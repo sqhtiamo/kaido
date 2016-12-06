@@ -1,0 +1,37 @@
+{
+	type: 1, 2 // 1: 单页面; 2: 多页面
+	height: '', // 单页面高度
+	animation: // 多页面间切换动画
+	page: [{
+		layer: {
+			type: 1 // 1: 文字; 2: 图片; 3: 音频; 4: 视频
+			content: [{
+				style: '',
+				text: ''
+			}, ... {}], // 当且仅当type为1时生效
+			url: '', // 当且仅当type为2、3、4时生效
+			style: {
+				
+				zIndex: 2,
+				border: '',
+				padding: '',
+				scale: '',
+				rotate: ''
+			}
+			animation: {
+				startTime: '', //以当前页面即时 或者 鼠标点击
+				lastTime: ''.
+				type: 
+			}
+		},
+		background: ''
+	}, ... ],
+	options: {
+		wxShare: {
+			image: '',
+			title: '',
+			description: ''
+		}
+	}
+
+}
