@@ -37,6 +37,7 @@ html {
   height: 100%;
 }
 
+
 body {
   display: flex;
   align-items: center;

@@ -1,17 +1,25 @@
 <template>
-  <div class="hello">
+  <k-header></k-header>
+  <div class="kaido-head">
     <h1>{{ msg }}</h1>
   </div>
+  <Login></Login>
+  <k-footer></k-footer>
 </template>
 
 <script>
+import Login from './Login'
+import KHeader from './KHeader'
+import KFooter from './KFooter'
+
 export default {
+  components: {
+    KHeader,
+    Login,
+    KFooter
+  },
   data () {
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
       msg: 'Hello World!'
     }
   }
