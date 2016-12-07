@@ -1,36 +1,61 @@
 <template>
+    <article class="page-wrapper">
 
-  <k-header></k-header>
+        <div>
+            <h1>{{ msg }}</h1>
+        </div>
 
-  <div>
-    <h1>{{ msg }}</h1>
-  </div>
+        <section class="main-area">
+            <k-shortcut></k-shortcut>
+            <k-view></k-view>
+            <k-function></k-function>
+        </section>
 
-
-  <k-footer></k-footer>
-
+    <article>
 </template>
 
 <script>
-import KHeader from './KHeader'
-import KFooter from './KFooter'
+import KShortcut from './KShortcut'
+import KView from './KView'
+import KFunction from './KFunction'
 
 export default {
-  components: {
-    KHeader,
-    KFooter
-  },
-  data () {
-    return {
-      msg: 'Hello World!'
+    components: {
+        KShortcut,
+        KView,
+        KFunction
+    },
+    data () {
+        return {
+            msg: 'Hello World!'
+        }
     }
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1 {
-  color: #42b983;
+<style lang="scss" scoped>
+$bg-color: #cecece;
+$black: #313131;
+.page-wrapper {
+    height: 100%;
+    background-color: nth($bg-color, 1);
+    color: #333;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    * {
+        -webkit-box-sizing: border-box;
+    }
+}
+.main-area {
+    height: 620px;
+    margin-left: 100px;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-perspective: 1100px;
+    perspective: 1100px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
 }
 </style>
