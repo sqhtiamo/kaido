@@ -1,21 +1,23 @@
 <template>
+
   <k-header></k-header>
-  <div class="kaido-head">
+
+  <div>
     <h1>{{ msg }}</h1>
   </div>
-  <Login></Login>
+
+
   <k-footer></k-footer>
+
 </template>
 
 <script>
-import Login from './Login'
 import KHeader from './KHeader'
 import KFooter from './KFooter'
 
 export default {
   components: {
     KHeader,
-    Login,
     KFooter
   },
   data () {

@@ -63,6 +63,10 @@ module.exports = {
         loader: 'vue-html'
       },
       {
+        test: /icon\/*\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'file-loader'
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',
         query: {
