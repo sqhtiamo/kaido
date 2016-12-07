@@ -5,9 +5,13 @@
     </div>
 
     <ul class="header-elements">
-      <li v-for="element in elementTitle">
-        <img v-bind:src="'../assets/icon/' + element.img + '.png'">
-        <p>{{element.title}}</p>
+      <li>
+        <img src="../assets/icon/font.png">
+        <p>文字</p>
+      </li>
+      <li>
+        <img src="../assets/icon/image.png">
+        <p>图片</p>
       </li>
     </ul>
 
@@ -83,6 +87,10 @@ header {
         opacity: 0.8;
       }
 
+      &:active {
+        opacity: 0.6;
+      }
+
       img {
         width: 30px;
       }
@@ -91,8 +99,23 @@ header {
 
   .header-operation {
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 20px;
+    top: 20px;
+
+    button {
+
+      min-width: 60px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #fff;
+      background-color: #00b4f5;
+      border-color: #00b4f5;
+
+      &:active {
+        background-color: #0092c7;
+        border-color: #0092c7;
+      }
+    }
   }
 }
 </style>
