@@ -35,8 +35,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import '../assets/reset.scss';
 $bg-color: #cecece;
-$black: #313131;
 .page-wrapper {
     height: 100%;
     background-color: nth($bg-color, 1);

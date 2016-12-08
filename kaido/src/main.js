@@ -17,12 +17,12 @@ const router = new VueRouter()
 // 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
 // 创建的组件构造函数，也可以是一个组件选项对象。
 router.map({
-  '/login': {
-    component: LoginPage
-  },
-  '/': {
-    component: MainPage
-  }
+    '/login': {
+        component: LoginPage
+    },
+    '/': {
+        component: MainPage
+    }
 })
 
 // 现在我们可以启动应用了！
