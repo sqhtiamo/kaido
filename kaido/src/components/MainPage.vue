@@ -18,11 +18,6 @@ export default {
         KShortcut,
         KView,
         KFunction
-    },
-    data () {
-        return {
-            msg: 'Hello World!'
-        }
     }
 }
 </script>

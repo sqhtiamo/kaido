@@ -104,13 +104,16 @@
 export default {
     methods: {
         saveViewport: function (message) {
-            this.$http.get('/test')
-                .then((response) => {
-                    console.log(response)
-                })
-                .catch((response) => {
-                    console.log(response)
-                })
+            this.$http.post('http://localhost:3000/', {
+                viewport: this.$store.state.viewport
+            })
+            .then((response) => {
+                console.log(this.$store.state.viewport)
+                console.log(response.data)
+            })
+            .catch((response) => {
+                console.log(response)
+            })
             console.log(1111)
             this.$store.dispatch('saveWork')
         }
