@@ -27,6 +27,26 @@
             <div v-for="layer in layers" style="position:absolute; top:30px; left: 130px; height: 30px; width: 100px; background-color: red;">
                 <div contenteditable="true">{{ layer.content}}</div>
             </div>
+			
+			<!-- 图片 -->
+            <div style="position: absolute; left: 50px; top: 50px; z-index: 2; width: 100px; height: 100px; transform: rotate(0deg); opacity: 1;">
+            	<div style="width: 100%; height: 100%; border-radius: 5px; padding-top: 0; padding-bottom: 0; border: 0px solid rgb(0, 0, 0); border-radius: 0;  -webkit-box-shadow: 0 0 3px rgba(184, 184, 184, 0.5); ">
+            		<div style="width: 100%; height: 100%;">
+            		    <img src="" style="width: 100%; height: 100%;" />
+            		</div>
+            	</div>
+            </div>
+
+            <!-- 文字 -->
+            <div style="position: absolute; top: 250px; left: 0; z-index: 5; width: 320px; height: 40px; -webkit-transform: rotate(0deg); opacity: 1;">
+            	<div style="width: 100%; height: 100%; padding-top: 0; padding-bottom: 0; border: 0px solid rgb(0, 0, 0); border-radius: 0; font-size: 20px; color: #fff;  -webkit-box-shadow: 0 0 3px rgba(184, 184, 184, 0.5); ">
+            		<div style="width: 100%; height: 100%">
+            			<div style="text-align: center">
+            				<span>活动demo</span>
+            			</div>
+            		</div>
+            	</div>
+            </div>
 		</div>
 	</section>
 </template>
@@ -121,7 +141,7 @@ $black: #313131;
     position: relative;
 	height: 486px;
 	background-color: nth($bg-color, 1);
-	background-image: url("../assets/images/kaido.jpg");
+	background-image: url("../assets/images/bg-hongfa.jpeg");
 	background-position: 50% 50%;
 	background-size: cover;
 }
