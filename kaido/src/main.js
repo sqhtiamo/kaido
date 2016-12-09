@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import LoginPage from './components/LoginPage'
 // 主页面
 import MainPage from './components/MainPage'
+// store仓库
+import store from './vuex/store'
 
 import './assets/reset.css'
 
@@ -26,7 +28,9 @@ router.map({
 })
 
 // 现在我们可以启动应用了！
-const App = Vue.extend({})
+const App = Vue.extend({
+    store
+})
 
 // 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
 router.start(App, '#app')

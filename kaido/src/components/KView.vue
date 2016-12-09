@@ -24,11 +24,23 @@
 		<!-- 手机主要视区 -->
 		<div class="phone-main-area">
 
+            <div v-for="layer in layers" style="position:absolute; top:30px; left: 130px; height: 30px; width: 100px; background-color: red;">
+                <div contenteditable="true">{{ layer.content}}</div>
+            </div>
 		</div>
 	</section>
 </template>
 
 <script>
+import store from '../vuex/store'
+export default {
+    computed: {
+        layers () {
+            return store.state.viewport.layers
+        }
+    }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -106,6 +118,7 @@ $black: #313131;
 }
 
 .phone-main-area {
+    position: relative;
 	height: 486px;
 	background-color: nth($bg-color, 1);
 }
