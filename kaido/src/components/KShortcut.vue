@@ -1,10 +1,10 @@
 <template>
 	<section class="shortcut-area">
-		<div class="shortcut font">
+		<div class="shortcut font" v-on:click="addFont(111)">
 			<p>文字</p>
 		</div>
 		<div class="shortcut img">
-			<p>图片</p>	
+			<p>图片</p>
 		</div>
 		<div class="shortcut background">
 			<p>背景</p>
@@ -22,6 +22,16 @@
 </template>
 
 <script>
+export default {
+    methods: {
+        addFont: function (message) {
+            this.$store.dispatch('addLayer', 'font')
+            console.log(this.$store.state)
+            console.log(this.$store.state.viewport.layers)
+            console.log(this.$store.state.viewport.curZIndex)
+        }
+    }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -78,7 +88,7 @@ $black: #313131;
 		&.font {
 			&::after {
 				background-image: url("../assets/svg/font.svg");
-			}	
+			}
 		}
 		&.img {
 			&::after {
@@ -88,22 +98,22 @@ $black: #313131;
 		&.background {
 			&::after {
 				background-image: url("../assets/svg/background.svg");
-			}	
+			}
 		}
 		&.copy {
 			&::after {
 				background-image: url("../assets/svg/copy.svg");
-			}	
+			}
 		}
 		&.preview {
 			&::after {
 				background-image: url("../assets/svg/preview.svg");
-			}	
+			}
 		}
 		&.phone {
 			&::after {
 				background-image: url("../assets/svg/phone.svg");
-			}	
+			}
 		}
 	}
 }
