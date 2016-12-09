@@ -1,6 +1,6 @@
 <template>
 	<section class="shortcut-area">
-		<div class="shortcut font" v-on:click="addFont(111)">
+		<div class="shortcut font" v-on:click="addFont()">
 			<p>文字</p>
 		</div>
 		<div class="shortcut img">
@@ -26,9 +26,6 @@ export default {
     methods: {
         addFont: function (message) {
             this.$store.dispatch('addLayer', 'font')
-            console.log(this.$store.state)
-            console.log(this.$store.state.viewport.layers)
-            console.log(this.$store.state.viewport.curZIndex)
         }
     }
 }

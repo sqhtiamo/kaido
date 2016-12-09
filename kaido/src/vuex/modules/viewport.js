@@ -10,7 +10,16 @@ const state = {
 
 // getters
 const getters = {
-    checkoutStatus: state => state.checkoutStatus
+    layerFormatData: state => {
+        return state.layers.map((layer) => {
+            return {
+                style: Object.keys(layer.style).map((styleKey) => {
+                    return styleKey + ':' + layer.style[styleKey] + ';'
+                }).join(''),
+                content: layer.content
+            }
+        })
+    }
 }
 
 // actions
@@ -25,12 +34,21 @@ const actions = {
 const mutations = {
 
     [types.ADD_LAYER] (state, { type }) {
-        console.log(21)
+        state.layers.forEach((layer) => {
+            layer.selected = false
+        })
         state.layers.push({
             content: '请输入的文字',
             style: {
+                position: 'absolute',
+                left: Math.random() * 300 + 'px',
+                top: Math.random() * 300 + 'px',
+                'background-color': 'green',
+                height: 'auto',
+                width: '200px',
                 zIndex: state.curZIndex + 1
             },
+            selected: true,
             type
         })
         state.curZIndex++

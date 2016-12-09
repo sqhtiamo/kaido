@@ -24,8 +24,8 @@
 		<!-- 手机主要视区 -->
 		<div class="phone-main-area">
 
-            <div v-for="layer in layers" style="position:absolute; top:30px; left: 130px; height: 30px; width: 100px; background-color: red;">
-                <div contenteditable="true">{{ layer.content}}</div>
+            <div v-for="layer in layers" :style="layer.style">
+                <div contenteditable="true">{{ layer.content }}</div>
             </div>
 			
 			<!-- 图片 -->
@@ -52,11 +52,11 @@
 </template>
 
 <script>
-import store from '../vuex/store'
 export default {
     computed: {
         layers () {
-            return store.state.viewport.layers
+            console.log(this.$store.getters.layerFormatData)
+            return this.$store.getters.layerFormatData
         }
     }
 }
@@ -139,6 +139,7 @@ $black: #313131;
 
 .phone-main-area {
     position: relative;
+    overflow: hidden;
 	height: 486px;
 	background-color: nth($bg-color, 1);
 	background-image: url("../assets/images/bg-hongfa.jpeg");

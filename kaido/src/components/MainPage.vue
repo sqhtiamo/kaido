@@ -1,16 +1,10 @@
 <template>
     <article class="page-wrapper">
-
-        <div>
-            <h1>{{ msg }}</h1>
-        </div>
-
         <section class="main-area">
             <k-shortcut></k-shortcut>
             <k-view></k-view>
             <k-function></k-function>
         </section>
-
     <article>
 </template>
 
