@@ -22,8 +22,8 @@
 		<h3 class="page-title">标题</h3>
 
 		<!-- 手机主要视区 -->
-		<div class="phone-main-area">
-
+		<div class="phone-main-area" style="">
+			
 		</div>
 	</section>
 </template>
@@ -32,7 +32,7 @@
 </script>
 
 <style lang="scss" scoped>
-$bg-color: #cecece;
+$bg-color: #e6e6e6;
 $black: #313131;
 .view-area {
 	position: relative;
@@ -108,5 +108,8 @@ $black: #313131;
 .phone-main-area {
 	height: 486px;
 	background-color: nth($bg-color, 1);
+	background-image: url("../assets/images/kaido.jpg");
+	background-position: 50% 50%;
+	background-size: cover;
 }
 </style>

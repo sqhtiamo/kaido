@@ -26,7 +26,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-$bg-color: #cecece;
+$bg-color: #e6e6e6;
 $black: #313131;
 .shortcut-area {
 	margin-right: 5px;
