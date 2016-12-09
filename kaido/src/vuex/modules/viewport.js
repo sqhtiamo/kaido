@@ -25,8 +25,15 @@ const getters = {
 // actions
 const actions = {
     addLayer ({ commit, state }, type) {
-        console.log(type)
         commit(types.ADD_LAYER, type)
+    },
+
+    saveWork ({ commit, state }) {
+        // this.$http.get('/someUrl').then((response) => {
+        // // success callback
+        // }, (response) => {
+        // // error callback
+        // })
     }
 }
 
@@ -41,11 +48,14 @@ const mutations = {
             content: '请输入的文字',
             style: {
                 position: 'absolute',
-                left: Math.random() * 300 + 'px',
+                left: Math.random() * 200 + 'px',
                 top: Math.random() * 300 + 'px',
                 'background-color': 'green',
+                'text-align': 'center',
                 height: 'auto',
                 width: '200px',
+                padding: '10px',
+                color: 'white',
                 zIndex: state.curZIndex + 1
             },
             selected: true,
@@ -73,7 +83,6 @@ const mutations = {
     },
 
     [types.SAVE_LAYER] (state) {
-        state.checkoutStatus = 'successful'
     }
 
 }

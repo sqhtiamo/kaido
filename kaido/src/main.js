@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+
 // 登陆页面
 import LoginPage from './components/LoginPage'
 // 主页面
@@ -10,6 +12,8 @@ import store from './vuex/store'
 import './assets/reset.css'
 
 Vue.use(VueRouter)
+
+Vue.use(VueResource)
 
 // 创建一个路由器实例
 // 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置

@@ -7,7 +7,7 @@
             <p>动画</p>
             <i class="func-tab-slide"></i>
         </div>
-        
+
         <!-- 样式 -->
         <div class="func-box"> <!-- 添加class"show", 显示内容 -->
             <div class="func-tit">
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- 边框 -->
         <div class="func-box">
             <div class="func-tit">
@@ -94,13 +94,28 @@
 
         <!-- 按钮 -->
         <div class="btn-box">
-            <button class="confirm">确定</button>
+            <button class="confirm" v-on:click="saveViewport()">确定</button>
             <button class="cancel">清除样式</button>
         </div>
     </section>
 </template>
 
 <script>
+export default {
+    methods: {
+        saveViewport: function (message) {
+            this.$http.get('/test')
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((response) => {
+                    console.log(response)
+                })
+            console.log(1111)
+            this.$store.dispatch('saveWork')
+        }
+    }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

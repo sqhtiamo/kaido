@@ -20,9 +20,9 @@ export default {
         KFunction
     },
     data () {
-        // return {
-        //     msg: 'Hello World!'
-        // }
+        return {
+            msg: 'Hello World!'
+        }
     }
 }
 </script>
