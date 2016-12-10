@@ -104,7 +104,7 @@
 export default {
     methods: {
         saveViewport: function (message) {
-            this.$http.post('http://localhost:3000/', {
+            this.$http.post('http://localhost:3000/work/save', {
                 viewport: this.$store.state.viewport
             })
             .then((response) => {
