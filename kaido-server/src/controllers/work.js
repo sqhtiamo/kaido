@@ -1,14 +1,18 @@
 import Router from 'koa-router';
-// import WorkModel from '../models/work';
+import WorkModel from '../models/work';
 
 const work = new Router();
 
 work.post('/save', async (ctx, next) => {
-  console.log(ctx.request);
-  console.log(this);
-  WorkModel.save()
-  ctx.body = 'Hello World!2';
-  await next;
+  try {
+    console.log(ctx.request.body.viewport);
+    await WorkModel.create(ctx.request.body.viewport);
+    ctx.body = ctx.request.body;
+    await next();
+  } catch (e) {
+    console.error(`[Error]: ${e.message}`);
+    ctx.body = `Error: ${e.message}`;
+  }
 });
 
 export default work;
