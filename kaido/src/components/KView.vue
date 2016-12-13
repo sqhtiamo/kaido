@@ -24,21 +24,21 @@
 		<!-- 手机主要视区 -->
 		<div class="phone-main-area">
 
-            <div v-for="layer in layers" :style="layer.style">
+            <div v-drag v-for="layer in layers" :style="layer.style" class="drag">
                 <div contenteditable="true">{{ layer.content }}</div>
             </div>
-			
+
 			<!-- 图片 -->
-            <div style="position: absolute; left: 50px; top: 50px; z-index: 2; width: 100px; height: 100px; transform: rotate(0deg); opacity: 1;">
+<!--             <div style="position: absolute; left: 50px; top: 50px; z-index: 2; width: 100px; height: 100px; transform: rotate(0deg); opacity: 1;">
             	<div style="width: 100%; height: 100%; border-radius: 5px; padding-top: 0; padding-bottom: 0; border: 0px solid rgb(0, 0, 0); border-radius: 0;  -webkit-box-shadow: 0 0 3px rgba(184, 184, 184, 0.5); ">
             		<div style="width: 100%; height: 100%;">
             		    <img src="" style="width: 100%; height: 100%;" />
             		</div>
             	</div>
-            </div>
+            </div> -->
 
             <!-- 文字 -->
-            <div style="position: absolute; top: 250px; left: 0; z-index: 5; width: 320px; height: 40px; -webkit-transform: rotate(0deg); opacity: 1;">
+<!--             <div style="position: absolute; top: 250px; left: 0; z-index: 5; width: 320px; height: 40px; -webkit-transform: rotate(0deg); opacity: 1;">
             	<div style="width: 100%; height: 100%; padding-top: 0; padding-bottom: 0; border: 0px solid rgb(0, 0, 0); border-radius: 0; font-size: 20px; color: #fff;  -webkit-box-shadow: 0 0 3px rgba(184, 184, 184, 0.5); ">
             		<div style="width: 100%; height: 100%">
             			<div style="text-align: center">
@@ -46,7 +46,7 @@
             			</div>
             		</div>
             	</div>
-            </div>
+            </div> -->
 		</div>
 	</section>
 </template>
@@ -145,5 +145,9 @@ $black: #313131;
 	background-image: url("../assets/images/bg-hongfa.jpeg");
 	background-position: 50% 50%;
 	background-size: cover;
+
+    .drag {
+        cursor: move;
+    }
 }
 </style>
