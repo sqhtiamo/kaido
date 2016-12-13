@@ -26,6 +26,9 @@ router.map({
     '/login': {
         component: LoginPage
     },
+    '/work': {
+        component: MainPage
+    },
     '/': {
         component: MainPage
     }
