@@ -35,6 +35,18 @@
             		    <img src="" style="width: 100%; height: 100%;" />
             		</div>
             	</div>
+            	<div class="select-func">
+            		<div class="rotate-circle"></div>
+            		<div class="rotate-line"></div>
+            		<div class="circle tm"></div>
+            		<div class="circle tl"></div>
+            		<div class="circle tr"></div>
+            		<div class="circle ml"></div>
+            		<div class="circle mr"></div>
+            		<div class="circle bl"></div>
+            		<div class="circle bm"></div>
+            		<div class="circle br"></div>
+            	</div>
             </div>
 
             <!-- 文字 -->
@@ -145,5 +157,77 @@ $black: #313131;
 	background-image: url("../assets/images/bg-hongfa.jpeg");
 	background-position: 50% 50%;
 	background-size: cover;
+}
+
+.select-func {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #01b3ec;
+	pointer-events: none;
+	.circle, .rotate-circle {
+		position: absolute;
+		width: 11px;
+		height: 11px;
+		background-color: #fff;
+		border-radius: 11px;
+		border: 1px solid #01b3ec;
+		-webkit-box-sizing: border-box;
+		&.tl {
+			top: -6px;
+			left: -6px;
+		}
+		&.tm {
+			top: -6px;
+			left: 50%;
+			margin-left: -6px;
+		}
+		&.tr {
+			top: -6px;
+			right: -6px;
+		}
+		&.ml {
+			top: 50%;
+			left: -6px;
+			margin-top: -6px;
+		}
+		&.mr {
+			top: 50%;
+			right: -6px;
+			margin-top: -6px;
+		}
+		&.bl {
+			bottom: -6px;
+			left: -6px;
+		}
+		&.bm {
+			bottom: -6px;
+			left: 50%;
+			margin-left: -6px;
+		}
+		&.br {
+			bottom: -6px;
+			right: -6px;
+		}
+	}
+	.rotate-circle {
+		left: 50%;
+		top: -35px;
+		margin-left: -6px;
+		background-color: #81ff00;
+		border: none;
+	}
+	.rotate-line {
+		position: absolute;
+		left: 50%;
+		top: -30px;
+		width: 1px;
+		height: 30px;
+		background-color: #81ff00;
+		margin-left: -1px;
+	}
 }
 </style>

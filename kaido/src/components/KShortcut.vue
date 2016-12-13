@@ -1,22 +1,26 @@
 <template>
 	<section class="shortcut-area">
-		<div class="shortcut font" v-on:click="addFont()">
-			<p>文字</p>
+		<div class="shortcut-t">
+			<div class="shortcut font" v-on:click="addFont()">
+				<p>文字</p>
+			</div>
+			<div class="shortcut img">
+				<p>图片</p>
+			</div>
+			<div class="shortcut background">
+				<p>背景</p>
+			</div>
 		</div>
-		<div class="shortcut img">
-			<p>图片</p>
-		</div>
-		<div class="shortcut background">
-			<p>背景</p>
-		</div>
-		<div class="shortcut copy">
-			<p>复制</p>
-		</div>
-		<div class="shortcut preview">
-			<p>预览</p>
-		</div>
-		<div class="shortcut phone">
-			<p>机型</p>
+		<div class="shortcut-b">
+			<div class="shortcut copy">
+				<p>复制</p>
+			</div>
+			<div class="shortcut preview">
+				<p>预览</p>
+			</div>
+			<div class="shortcut phone">
+				<p>机型</p>
+			</div>
 		</div>
 	</section>
 </template>
@@ -37,6 +41,9 @@ $bg-color: #e6e6e6;
 $black: #313131;
 .shortcut-area {
 	margin-right: 5px;
+	.shortcut-t {
+		margin-bottom: 10px;
+	}
 	.shortcut {
 		position: relative;
 		width: 35px;

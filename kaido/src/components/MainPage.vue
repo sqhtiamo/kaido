@@ -5,6 +5,7 @@
             <k-view></k-view>
             <k-function></k-function>
         </section>
+        <k-page></k-page>
     <article>
 </template>
 
@@ -12,12 +13,14 @@
 import KShortcut from './KShortcut'
 import KView from './KView'
 import KFunction from './KFunction'
+import KPage from './KPage'
 
 export default {
     components: {
         KShortcut,
         KView,
-        KFunction
+        KFunction,
+        KPage
     }
 }
 </script>

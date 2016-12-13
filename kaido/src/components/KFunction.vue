@@ -17,12 +17,12 @@
             <div class="func-con">
                 <div class="func-line">
                     <h4>背景颜色</h4>
-                    <div class="color-btn"></div>
+                    <input class="color-btn" type="color" />
                     <input type="text" />
                 </div>
                 <div class="func-line">
                     <h4>文字颜色</h4>
-                    <div class="color-btn"></div>
+                    <input class="color-btn" type="color" />
                     <input type="text" />
                 </div>
                 <div class="func-line">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="func-line">
                     <h4>颜色</h4>
-                    <div class="color-btn"></div>
+                    <input class="color-btn" type="color" />
                     <input type="text" />
                 </div>
             </div>
@@ -83,6 +83,7 @@
                 </div>
                 <div class="func-line">
                     <h4>颜色</h4>
+                    <input class="color-btn" type="color" />
                     <input type="text" />
                 </div>
                 <div class="func-line">
@@ -262,13 +263,17 @@ $black: #313131;
     }
 }
 .color-btn {
+    display: block;
     width: 40px;
     height: 20px;
-    margin-right: 15px;
-    border: 1px solid #ccc;
-    -webkit-box-sizing: border-box;
+    padding: 0;
+    margin-right: 10px;
+    background: none;
     cursor: pointer;
+    -webkit-box-sizing: border-box;
+    -webkit-appearance: none;
 }
+
 .btn-box {
     position: absolute;
     bottom: 0;
