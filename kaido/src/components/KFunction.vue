@@ -105,11 +105,10 @@ export default {
     methods: {
         saveViewport: function (message) {
             this.$http.post('http://localhost:3000/work/save', {
-                viewport: this.$store.state.viewport
+                work: this.$store.state.work
             })
             .then((response) => {
-                console.log(this.$store.state.viewport)
-                console.log(response.data)
+                this.$store.state.work.workId = response.data
             })
             .catch((response) => {
                 console.log(response)
