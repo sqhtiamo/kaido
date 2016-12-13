@@ -25,7 +25,7 @@
 		<div class="phone-main-area">
 
             <div v-drag v-for="layer in layers" :style="layer.style" class="drag">
-                <div contenteditable="true" >{{ layer.content }}</div>
+                <div contenteditable="true">{{ 1111 }}</div>
             </div>
 
 			<!-- 图片 -->
