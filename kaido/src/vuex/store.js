@@ -1,7 +1,7 @@
 // vuex/store.js
 import Vue from 'vue'
 import Vuex from 'vuex'
-import viewport from './modules/viewport'
+import work from './modules/work'
 
 import * as actions from './actions'
 import * as getters from './getters'
@@ -17,6 +17,6 @@ export default new Vuex.Store({
 
     // 组合各个模块
     modules: {
-        viewport
+        work
     }
 })

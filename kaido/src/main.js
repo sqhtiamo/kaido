@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import vueDrag from 'vue-dragging'
+import vueDrag from './plugin/drag'
 
 // 登陆页面
 import LoginPage from './components/LoginPage'

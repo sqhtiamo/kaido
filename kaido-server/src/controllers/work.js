@@ -1,19 +1,25 @@
 import Router from 'koa-router';
 import WorkModel from '../models/work';
 
-const work = new Router();
+const workRouter = new Router();
 
-work.post('/save', async (ctx, next) => {
+workRouter.post('/save', async (ctx, next) => {
   try {
-    console.log(ctx.request.body.viewport);
-    await WorkModel.create(ctx.request.body.viewport);
-    ctx.body = ctx.request.body;
-    await next();
+    const workId = ctx.request.body.work.workId;
+    if (!workId) {
+      const work = await WorkModel.create(ctx.request.body.work);
+      ctx.body = work.workId;
+      await next();
+    } else {
+      await WorkModel.update({ workId }, ctx.request.body.work);
+      ctx.body = workId;
+      await next();
+    }
   } catch (e) {
     console.error(`[Error]: ${e.message}`);
     ctx.body = `Error: ${e.message}`;
   }
 });
 
-export default work;
+export default workRouter;
 

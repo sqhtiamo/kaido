@@ -24,7 +24,7 @@
 		<!-- 手机主要视区 -->
 		<div class="phone-main-area">
 
-            <div v-drag v-for="layer in layers" :style="layer.style" class="drag">
+            <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="layer.style" class="drag">
                 <div contenteditable="true" >{{ layer.content }}</div>
             </div>
 
@@ -67,19 +67,12 @@
 export default {
     computed: {
         layers () {
-            console.log(this.$store.getters.layerFormatData)
             return this.$store.getters.layerFormatData
         }
     },
     methods: {
-        addChild: function (index) {
-            this.children.splice(index + 1, 0, '')
-        },
-        removeChild: function (index) {
-            this.children.splice(index, 1)
-        },
-        getData: function () {
-            console.log(this.children)
+        updateLayer: function (index, options) {
+            this.$store.dispatch('updateLayer', {index, options})
         }
     }
 }

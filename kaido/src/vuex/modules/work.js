@@ -28,6 +28,10 @@ const actions = {
         commit(types.ADD_LAYER, type)
     },
 
+    updateLayer ({ commit, state }, {index, options}) {
+        commit(types.UPDATE_LAYER, {index, options})
+    },
+
     saveWork ({ commit, state }) {
         // this.$http.get('/someUrl').then((response) => {
         // // success callback
@@ -48,8 +52,8 @@ const mutations = {
             content: '请输入的文字',
             style: {
                 position: 'absolute',
-                left: Math.random() * 200 + 'px',
-                top: Math.random() * 300 + 'px',
+                left: Number(Math.random() * 200) + 'px',
+                top: Number(Math.random() * 300) + 'px',
                 'background-color': 'green',
                 'text-align': 'center',
                 height: 'auto',
@@ -59,22 +63,27 @@ const mutations = {
                 zIndex: state.curZIndex + 1
             },
             selected: true,
-            type
+            type,
+            index: state.curZIndex
         })
         state.curZIndex++
     },
 
-    [types.EDIT_LAYER] (state, { id }) {
-        state.lastCheckout = null
-        const record = state.added.find(p => p.id === id)
-        if (!record) {
-            state.added.push({
-                id,
-                quantity: 1
-            })
-        } else {
-            record.quantity++
-        }
+    [types.UPDATE_LAYER] (state, {index, options}) {
+        const layer = state.layers.find(p => p.index === index)
+        Object.keys(options).forEach((styleKey) => {
+            layer.style[styleKey] = options[styleKey]
+        })
+        console.log(layer)
+        // const record = state.added.find(p => p.id === id)
+        // if (!record) {
+        //     state.added.push({
+        //         id,
+        //         quantity: 1
+        //     })
+        // } else {
+        //     record.quantity++
+        // }
     },
 
     [types.DELETE_LAYER] (state) {
