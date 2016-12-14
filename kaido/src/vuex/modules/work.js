@@ -5,7 +5,8 @@ import * as types from '../mutation-types'
 
 const state = {
     layers: [],
-    curZIndex: 0
+    layerNum: 0,
+    curIndex: -1
 }
 
 // getters
@@ -48,25 +49,26 @@ const mutations = {
         state.layers.forEach((layer) => {
             layer.selected = false
         })
+        state.layerNum++
         state.layers.push({
             content: '请输入的文字',
             style: {
                 position: 'absolute',
                 left: Number(Math.random() * 200) + 'px',
                 top: Number(Math.random() * 300) + 'px',
-                'background-color': 'green',
                 'text-align': 'center',
                 height: 'auto',
                 width: '200px',
                 padding: '10px',
-                color: 'white',
-                zIndex: state.curZIndex + 1
+                'background-color': '#00ff00',
+                color: '#ffffff',
+                zIndex: state.layerNum
             },
             selected: true,
             type,
-            index: state.curZIndex
+            index: state.layerNum
         })
-        state.curZIndex++
+        state.curIndex = state.layerNum
     },
 
     [types.UPDATE_LAYER] (state, {index, options}) {
