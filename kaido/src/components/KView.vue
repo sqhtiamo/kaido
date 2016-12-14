@@ -24,10 +24,10 @@
 		<!-- 手机主要视区 -->
 		<div class="phone-main-area">
 
-            <div v-for="layer in layers" :style="layer.style">
-                <div contenteditable="true">{{ layer.content }}</div>
+            <div v-drag v-for="layer in layers" :style="layer.style" class="drag">
+                <div contenteditable="true" >{{ layer.content }}</div>
             </div>
-			
+
 			<!-- 图片 -->
             <div style="position: absolute; left: 50px; top: 50px; z-index: 2; width: 100px; height: 100px; transform: rotate(0deg); opacity: 1;">
             	<div style="width: 100%; height: 100%; border-radius: 5px; padding-top: 0; padding-bottom: 0; border: 0px solid rgb(0, 0, 0); border-radius: 0;  -webkit-box-shadow: 0 0 3px rgba(184, 184, 184, 0.5); ">
@@ -69,6 +69,17 @@ export default {
         layers () {
             console.log(this.$store.getters.layerFormatData)
             return this.$store.getters.layerFormatData
+        }
+    },
+    methods: {
+        addChild: function (index) {
+            this.children.splice(index + 1, 0, '')
+        },
+        removeChild: function (index) {
+            this.children.splice(index, 1)
+        },
+        getData: function () {
+            console.log(this.children)
         }
     }
 }
@@ -157,6 +168,10 @@ $black: #313131;
 	background-image: url("../assets/images/bg-hongfa.jpeg");
 	background-position: 50% 50%;
 	background-size: cover;
+
+    .drag {
+        cursor: move;
+    }
 }
 
 .select-func {
