@@ -26,6 +26,18 @@
 
             <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="layer.style" class="drag">
                 <div contenteditable="true" >{{ layer.content }}</div>
+            	<div class="select-func">
+            		<div class="rotate-circle"></div>
+            		<div class="rotate-line"></div>
+            		<div class="circle tm"></div>
+            		<div class="circle tl"></div>
+            		<div class="circle tr"></div>
+            		<div class="circle ml"></div>
+            		<div class="circle mr"></div>
+            		<div class="circle bl"></div>
+            		<div class="circle bm"></div>
+            		<div class="circle br"></div>
+            	</div>
             </div>
 
 			<!-- 图片 -->
@@ -220,6 +232,18 @@ $black: #313131;
 			bottom: -6px;
 			right: -6px;
 		}
+		&.tl, &.br {
+			cursor: nwse-resize;
+		}
+		&.tr, &.bl {
+			cursor: nesw-resize;
+		}
+		&.ml, &.mr {
+			cursor: ew-resize;
+		}
+		&.tm, &.bm {
+			cursor: ns-resize;
+		}
 	}
 	.rotate-circle {
 		left: 50%;
@@ -227,6 +251,7 @@ $black: #313131;
 		margin-left: -6px;
 		background-color: #81ff00;
 		border: none;
+		cursor: url(http://www.eqxiu.com/c/images/mouserotate-70a3d7.ico) 10 10,default;
 	}
 	.rotate-line {
 		position: absolute;
