@@ -65,8 +65,8 @@ const mutations = {
                 width: '200px',
                 padding: '10px',
                 opacity: 1,
-                'background-color': '#00ff00',
-                color: '#ffffff',
+                'background-color': 'transparent',
+                color: '#000',
                 // 'line-height': '16',
                 zIndex: state.layerNum
             },

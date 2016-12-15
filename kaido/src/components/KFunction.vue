@@ -17,7 +17,10 @@
             <div class="func-con">
                 <div class="func-line">
                     <h4>背景颜色</h4>
-                    <input class="color-btn" type="color" v-model="style['background-color']"/>
+                    <div class="color-btn">
+                        <input type="color" v-model="style['background-color']"/>
+                        <i></i>
+                    </div>
                     <input type="text" />
                 </div>
                 <div class="func-line">
@@ -83,7 +86,10 @@
                 </div>
                 <div class="func-line">
                     <h4>颜色</h4>
-                    <input class="color-btn" type="color" />
+                    <div class="color-btn">
+                        <input type="color" />
+                        <i></i>
+                    </div>
                     <input type="text" />
                 </div>
                 <div class="func-line">
@@ -154,7 +160,7 @@ $bg-color: #e6e6e6;
 $black: #313131;
 .func-area {
     position: relative;
-    width: 250px;
+    width: 220px;
     height: 550px;
     margin-left: 5px;
     background-color: #f1f1f1;
@@ -235,7 +241,6 @@ $black: #313131;
             transform: rotate(90deg);
         }
     }
-
 }
 .func-con {
     padding: 10px 20px;
@@ -287,15 +292,29 @@ $black: #313131;
     }
 }
 .color-btn {
+    position: relative;
     display: block;
-    width: 40px;
+    width: 30px;
     height: 20px;
-    padding: 0;
     margin-right: 10px;
-    background: none;
+    border: 1px solid #ccc;
     cursor: pointer;
     -webkit-box-sizing: border-box;
-    -webkit-appearance: none;
+    box-sizing: border-box;
+    input {
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+    i {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
 }
 
 .btn-box {
