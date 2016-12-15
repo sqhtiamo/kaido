@@ -9,36 +9,36 @@
         </div>
 
         <!-- 样式 -->
-        <div class="func-box"> <!-- 添加class"show", 显示内容 -->
-            <div class="func-tit">
+        <div class="func-box" v-bind:class="{ show: styleShow === 0 }" > <!-- 添加class"show", 显示内容 -->
+            <div class="func-tit" v-on:click="show(0)">
                 <p>样式</p>
                 <i class="ui-arrow-solid"></i>
             </div>
             <div class="func-con">
                 <div class="func-line">
                     <h4>背景颜色</h4>
-                    <input class="color-btn" type="color" />
+                    <input class="color-btn" type="color" v-model="style['background-color']"/>
                     <input type="text" />
                 </div>
                 <div class="func-line">
                     <h4>文字颜色</h4>
-                    <input class="color-btn" type="color" />
+                    <input class="color-btn" type="color" v-model="style.color" />
                     <input type="text" />
                 </div>
                 <div class="func-line">
                     <h4>透明度</h4>
-                    <input type="number" />
+                    <input type="number" v-model="style.opacity" />
                 </div>
                 <div class="func-line">
                     <h4>行高</h4>
-                    <input type="number" />
+                    <input type="number" v-model="style['line-height']" />
                 </div>
             </div>
         </div>
 
         <!-- 边框 -->
-        <div class="func-box">
-            <div class="func-tit">
+        <div class="func-box" v-bind:class="{ show: styleShow === 1 }">
+            <div class="func-tit" v-on:click="show(1)">
                 <p>边框</p>
                 <i class="ui-arrow-solid"></i>
             </div>
@@ -67,8 +67,8 @@
         </div>
 
         <!-- 阴影 -->
-        <div class="func-box show">
-            <div class="func-tit">
+        <div class="func-box" v-bind:class="{ show: styleShow === 2 }">
+            <div class="func-tit" v-on:click="show(2)">
                 <p>阴影</p>
                 <i class="ui-arrow-solid"></i>
             </div>
@@ -103,7 +103,33 @@
 
 <script>
 export default {
+    data () {
+        return {
+            functionShow: 0,
+            styleShow: 0
+        }
+    },
+    computed: {
+        style () {
+            console.log(this.$store.state.work.curIndex)
+            if (this.$store.state.work.layers.length > 0) {
+                const curIndex = this.$store.state.work.curIndex
+                console.log(curIndex)
+                console.log(this.$store.state.work.layers[0].style)
+                return this.$store.state.work.layers[curIndex].style
+            } else {
+                return {}
+            }
+        }
+    },
     methods: {
+        show: function (type) {
+            if (this.styleShow !== type) {
+                this.styleShow = type
+            } else {
+                this.styleShow = -1
+            }
+        },
         saveViewport: function (message) {
             this.$http.post('http://localhost:3000/work/save', {
                 work: this.$store.state.work
@@ -114,7 +140,6 @@ export default {
             .catch((response) => {
                 console.log(response)
             })
-            console.log(1111)
             this.$store.dispatch('saveWork')
         }
     }

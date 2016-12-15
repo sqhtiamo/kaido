@@ -21,5 +21,18 @@ workRouter.post('/save', async (ctx, next) => {
   }
 });
 
+workRouter.get('/get', async (ctx, next) => {
+  try {
+    const workId = ctx.request.query.id;
+    const work = await WorkModel.findOne({ workId });
+    ctx.body = work;
+    await next();
+  } catch (e) {
+    console.error(`[Error]: ${e.message}`);
+    ctx.body = `Error: ${e.message}`;
+  }
+});
+
+
 export default workRouter;
 

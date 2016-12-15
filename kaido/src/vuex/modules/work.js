@@ -5,7 +5,8 @@ import * as types from '../mutation-types'
 
 const state = {
     layers: [],
-    curZIndex: 0
+    layerNum: 0,
+    curIndex: -1
 }
 
 // getters
@@ -16,6 +17,7 @@ const getters = {
                 style: Object.keys(layer.style).map((styleKey) => {
                     return styleKey + ':' + layer.style[styleKey] + ';'
                 }).join(''),
+                index: layer.index,
                 content: layer.content
             }
         })
@@ -30,6 +32,10 @@ const actions = {
 
     updateLayer ({ commit, state }, {index, options}) {
         commit(types.UPDATE_LAYER, {index, options})
+    },
+
+    selectLayer ({ commit, state }, {index}) {
+        commit(types.SELECT_LAYER, {index})
     },
 
     saveWork ({ commit, state }) {
@@ -54,19 +60,22 @@ const mutations = {
                 position: 'absolute',
                 left: Number(Math.random() * 200) + 'px',
                 top: Number(Math.random() * 300) + 'px',
-                'background-color': 'green',
                 'text-align': 'center',
                 height: 'auto',
                 width: '200px',
                 padding: '10px',
-                color: 'white',
-                zIndex: state.curZIndex + 1
+                opacity: 1,
+                'background-color': '#00ff00',
+                color: '#ffffff',
+                // 'line-height': '16',
+                zIndex: state.layerNum
             },
             selected: true,
             type,
-            index: state.curZIndex
+            index: state.layerNum
         })
-        state.curZIndex++
+        state.curIndex = state.layerNum
+        state.layerNum++
     },
 
     [types.UPDATE_LAYER] (state, {index, options}) {
@@ -74,16 +83,10 @@ const mutations = {
         Object.keys(options).forEach((styleKey) => {
             layer.style[styleKey] = options[styleKey]
         })
-        console.log(layer)
-        // const record = state.added.find(p => p.id === id)
-        // if (!record) {
-        //     state.added.push({
-        //         id,
-        //         quantity: 1
-        //     })
-        // } else {
-        //     record.quantity++
-        // }
+    },
+
+    [types.SELECT_LAYER] (state, {index}) {
+        state.curIndex = index
     },
 
     [types.DELETE_LAYER] (state) {
