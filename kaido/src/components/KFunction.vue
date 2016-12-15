@@ -27,11 +27,11 @@
                 </div>
                 <div class="func-line">
                     <h4>透明度</h4>
-                    <input type="number" />
+                    <input type="number" v-model="style.opacity" />
                 </div>
                 <div class="func-line">
                     <h4>行高</h4>
-                    <input type="number" />
+                    <input type="number" v-model="style['line-height']" />
                 </div>
             </div>
         </div>
@@ -113,8 +113,10 @@ export default {
         style () {
             console.log(this.$store.state.work.curIndex)
             if (this.$store.state.work.layers.length > 0) {
+                const curIndex = this.$store.state.work.curIndex
+                console.log(curIndex)
                 console.log(this.$store.state.work.layers[0].style)
-                return this.$store.state.work.layers[0].style
+                return this.$store.state.work.layers[curIndex].style
             } else {
                 return {}
             }
