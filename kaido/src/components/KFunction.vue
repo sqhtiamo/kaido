@@ -25,7 +25,10 @@
                 </div>
                 <div class="func-line">
                     <h4>文字颜色</h4>
-                    <input class="color-btn" type="color" v-model="style.color" />
+                    <div class="color-btn">
+                        <input type="color" v-model="style.color" />
+                        <i></i>
+                    </div>
                     <input type="text" />
                 </div>
                 <div class="func-line">
@@ -63,7 +66,10 @@
                 </div>
                 <div class="func-line">
                     <h4>颜色</h4>
-                    <input class="color-btn" type="color" />
+                    <div class="color-btn">
+                        <input type="color" />
+                        <i></i>
+                    </div>
                     <input type="text" />
                 </div>
             </div>
