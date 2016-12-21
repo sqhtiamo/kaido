@@ -19,7 +19,6 @@
                     <h4>背景颜色</h4>
                     <div class="color-btn">
                         <input type="color" v-model="style['background-color']"/>
-                        <i></i>
                     </div>
                     <input type="text" />
                 </div>
@@ -27,7 +26,6 @@
                     <h4>文字颜色</h4>
                     <div class="color-btn">
                         <input type="color" v-model="style.color" />
-                        <i></i>
                     </div>
                     <input type="text" />
                 </div>
@@ -68,7 +66,6 @@
                     <h4>颜色</h4>
                     <div class="color-btn">
                         <input type="color" />
-                        <i></i>
                     </div>
                     <input type="text" />
                 </div>
@@ -94,7 +91,6 @@
                     <h4>颜色</h4>
                     <div class="color-btn">
                         <input type="color" />
-                        <i></i>
                     </div>
                     <input type="text" />
                 </div>
@@ -300,7 +296,7 @@ $black: #313131;
 .color-btn {
     position: relative;
     display: block;
-    width: 30px;
+    width: 20px;
     height: 20px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -308,19 +304,25 @@ $black: #313131;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     input {
-        width: 100%;
-        opacity: 0;
-        cursor: pointer;
-    }
-    i {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1;
+        display: block;
         width: 100%;
         height: 100%;
-        pointer-events: none;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        -webkit-box-sizing: border-box;
     }
+    // i {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     z-index: 1;
+    //     width: 100%;
+    //     height: 100%;
+    //     pointer-events: none;
+    // }
 }
 
 .btn-box {
