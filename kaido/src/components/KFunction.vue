@@ -7,97 +7,165 @@
             <p>动画</p>
             <i class="func-tab-slide"></i>
         </div>
-
+        
         <!-- 样式 -->
-        <div class="func-box" v-bind:class="{ show: styleShow === 0 }" > <!-- 添加class"show", 显示内容 -->
-            <div class="func-tit" v-on:click="show(0)">
-                <p>样式</p>
-                <i class="ui-arrow-solid"></i>
+        <div class="func-style" style="display: none">
+            <div class="func-box" v-bind:class="{ show: styleShow === 0 }" > <!-- 添加class"show", 显示内容 -->
+                <div class="func-tit" v-on:click="show(0)">
+                    <p>样式</p>
+                    <i class="ui-arrow-solid"></i>
+                </div>
+                <div class="func-con">
+                    <div class="func-line">
+                        <h4>背景颜色</h4>
+                        <div class="color-btn">
+                            <input type="color" v-model="style['background-color']"/>
+                        </div>
+                        <input type="text" />
+                    </div>
+                    <div class="func-line">
+                        <h4>文字颜色</h4>
+                        <div class="color-btn">
+                            <input type="color" v-model="style.color" />
+                        </div>
+                        <input type="text" />
+                    </div>
+                    <div class="func-line">
+                        <h4>透明度</h4>
+                        <input type="number" v-model="style.opacity" />
+                    </div>
+                    <div class="func-line">
+                        <h4>行高</h4>
+                        <input type="number" v-model="style['line-height']" />
+                    </div>
+                </div>
             </div>
-            <div class="func-con">
-                <div class="func-line">
-                    <h4>背景颜色</h4>
-                    <div class="color-btn">
-                        <input type="color" v-model="style['background-color']"/>
+
+            <!-- 边框 -->
+            <div class="func-box" v-bind:class="{ show: styleShow === 1 }">
+                <div class="func-tit" v-on:click="show(1)">
+                    <p>边框</p>
+                    <i class="ui-arrow-solid"></i>
+                </div>
+                <div class="func-con">
+                    <div class="func-line">
+                        <h4>尺寸</h4>
+                        <input type="number" />
                     </div>
-                    <input type="text" />
-                </div>
-                <div class="func-line">
-                    <h4>文字颜色</h4>
-                    <div class="color-btn">
-                        <input type="color" v-model="style.color" />
+                    <div class="func-line">
+                        <h4>圆角</h4>
+                        <input type="number" />
                     </div>
-                    <input type="text" />
+                    <div class="func-line">
+                        <h4>样式</h4>
+                        <select>
+                            <option>直线</option>
+                            <option>虚线</option>
+                        </select>
+                    </div>
+                    <div class="func-line">
+                        <h4>颜色</h4>
+                        <div class="color-btn">
+                            <input type="color" />
+                        </div>
+                        <input type="text" />
+                    </div>
                 </div>
-                <div class="func-line">
-                    <h4>透明度</h4>
-                    <input type="number" v-model="style.opacity" />
+            </div>
+
+            <!-- 阴影 -->
+            <div class="func-box" v-bind:class="{ show: styleShow === 2 }">
+                <div class="func-tit" v-on:click="show(2)">
+                    <p>阴影</p>
+                    <i class="ui-arrow-solid"></i>
                 </div>
-                <div class="func-line">
-                    <h4>行高</h4>
-                    <input type="number" v-model="style['line-height']" />
+                <div class="func-con">
+                    <div class="func-line">
+                        <h4>大小</h4>
+                        <input type="number" />
+                    </div>
+                    <div class="func-line">
+                        <h4>模糊</h4>
+                        <input type="number" />
+                    </div>
+                    <div class="func-line">
+                        <h4>颜色</h4>
+                        <div class="color-btn">
+                            <input type="color" />
+                        </div>
+                        <input type="text" />
+                    </div>
+                    <div class="func-line">
+                        <h4>方向</h4>
+                        <input type="number" />
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- 边框 -->
-        <div class="func-box" v-bind:class="{ show: styleShow === 1 }">
-            <div class="func-tit" v-on:click="show(1)">
-                <p>边框</p>
-                <i class="ui-arrow-solid"></i>
-            </div>
-            <div class="func-con">
-                <div class="func-line">
-                    <h4>尺寸</h4>
-                    <input type="number" />
+        
+        <!-- 动画 -->
+        <div class="func-animation">
+            <div class="func-box show">
+                <div class="func-tit">
+                    <p>动画1</p>
+                    <i class="ui-arrow-solid"></i>
                 </div>
-                <div class="func-line">
-                    <h4>圆角</h4>
-                    <input type="number" />
-                </div>
-                <div class="func-line">
-                    <h4>样式</h4>
-                    <select>
-                        <option>直线</option>
-                        <option>虚线</option>
-                    </select>
-                </div>
-                <div class="func-line">
-                    <h4>颜色</h4>
-                    <div class="color-btn">
-                        <input type="color" />
+                <div class="func-con">
+                    <div class="func-line">
+                        <h4>方式</h4>
+                        <select>
+                            <optgroup label="进入">
+                                <option>淡入</option>
+                                <option>移入</option>
+                                <option>弹入</option>
+                                <option>中心放大</option>
+                            </optgroup>
+                            <optgroup label="强调">
+                                <option>摇摆</option>
+                                <option>闪烁</option>
+                                <option>旋转</option>
+                                <option>放大抖动</option>
+                            </optgroup>
+                            <optgroup label="退出">
+                                <option>淡出</option>
+                                <option>移出</option>
+                                <option>弹出</option>
+                                <option>中心缩小</option>
+                            </optgroup>
+                        </select>
                     </div>
-                    <input type="text" />
-                </div>
-            </div>
-        </div>
-
-        <!-- 阴影 -->
-        <div class="func-box" v-bind:class="{ show: styleShow === 2 }">
-            <div class="func-tit" v-on:click="show(2)">
-                <p>阴影</p>
-                <i class="ui-arrow-solid"></i>
-            </div>
-            <div class="func-con">
-                <div class="func-line">
-                    <h4>大小</h4>
-                    <input type="number" />
-                </div>
-                <div class="func-line">
-                    <h4>模糊</h4>
-                    <input type="number" />
-                </div>
-                <div class="func-line">
-                    <h4>颜色</h4>
-                    <div class="color-btn">
-                        <input type="color" />
+                    <div class="func-line">
+                        <h4>方向</h4>
+                        <select>
+                            <option>从左向右</option>
+                            <option>从上到下</option>
+                            <option>从右向左</option>
+                            <option>从下到上</option>
+                        </select>
                     </div>
-                    <input type="text" />
+                    <div class="func-line">
+                        <h4>时间</h4>
+                        <input type="number" />
+                    </div>
+                    <div class="func-line">
+                        <h4>延迟</h4>
+                        <input type="number" />
+                    </div>
+                    <div class="func-line">
+                        <h4>次数</h4>
+                        <input type="number" />
+                        <label class="ui-checkbox">
+                            <input type="checkbox" />
+                            <p>循环</p>
+                        </label>
+                    </div>
                 </div>
-                <div class="func-line">
-                    <h4>方向</h4>
-                    <input type="number" />
-                </div>
+            </div>
+            
+            <!-- 添加动画按钮 -->
+            <div class="btn-box">
+                <button class="confirm ">添加动画</button>
+                <button class="cancel">预览动画</button>
             </div>
         </div>
 
@@ -291,6 +359,20 @@ $black: #313131;
     }
     &:last-child {
         border-bottom: none;
+    }
+}
+.ui-checkbox {
+    margin-left: 20px;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    input {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+    }
+    p {
+        font-size: 12px;
     }
 }
 .color-btn {

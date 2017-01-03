@@ -106,6 +106,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/animation.scss';
+
 $bg-color: #e6e6e6;
 $black: #313131;
 .view-area {

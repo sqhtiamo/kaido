@@ -29,6 +29,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/reset.scss';
 @import '../assets/public.scss';
+@import '../assets/animation.scss';
 
 $bg-color: #e6e6e6;
 .page-wrapper {
