@@ -33,6 +33,18 @@ workRouter.get('/get', async (ctx, next) => {
   }
 });
 
+workRouter.get('/view', async (ctx) => {
+  try {
+    const workId = ctx.request.query.id;
+    const work = await WorkModel.findOne({ workId });
+    await ctx.render('work', {
+      work,
+    });
+  } catch (e) {
+    console.error(`[Error]: ${e.message}`);
+    ctx.body = `Error: ${e.message}`;
+  }
+});
 
 export default workRouter;
 

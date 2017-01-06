@@ -12,10 +12,11 @@
     "koa-router": "^7.0.1",
     "koa-session": "^3.3.1",
     "koa-static": "^3.0.0",
-    "koa-views": "^5.0.1",
+    "koa-views": "^5.2.0",
     "mongoose": "^4.7.2",
     "mongoose-auto-increment": "^5.0.1",
-    "nunjucks": "^2.4.2"
+    "nunjucks": "^2.4.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
