@@ -9,6 +9,7 @@ const state = {
     curIndex: -1
 }
 
+
 // getters
 const getters = {
     layerFormatData: state => {
