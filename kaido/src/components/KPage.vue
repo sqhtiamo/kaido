@@ -1,6 +1,6 @@
 <template>
     <section class="pages-area">
-    	<div class="pages-t">
+    	<div class="pages-t" v-on:click="toggleFold()">
 			<div class="cube">
 				<div class="front">
 					<i class="arrow"></i>
@@ -45,6 +45,10 @@ export default {
         deletePage: function (curPage) {
             const pageIndex = curPage - 1
             this.$store.dispatch('deletePage', {pageIndex})
+        },
+
+        toggleFold: function () {
+            console.log(this)
         }
     }
 }

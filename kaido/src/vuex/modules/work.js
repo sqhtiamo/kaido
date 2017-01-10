@@ -141,11 +141,14 @@ const mutations = {
             return
         }
 
+        console.log(pageIndex)
         state.pages.splice(pageIndex, 1)
         // 删除的是最后一个
         if (pageIndex === state.pages.length) {
             state.curPage--
         }
+        // 删除之后当前layer展示下一页
+        state.curLayer = state.pages[state.curPage - 1]
     }
 }
 
