@@ -189,16 +189,12 @@ export default {
     },
     computed: {
         layerNum () {
-            console.log(12)
-
             return this.$store.state.work.curPage.layerNum
         },
         funcShow () {
-            console.log(11)
             return this.$store.state.work.curPage.selectState
         },
         style () {
-            console.log(this.$store.state.work.curPage.selectState)
             if (this.$store.state.work.curPage.layers.length > 0) {
                 const curIndex = this.$store.state.work.curPage.curIndex
                 return this.$store.state.work.curPage.layers[curIndex].style

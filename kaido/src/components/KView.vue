@@ -90,7 +90,7 @@ export default {
             return this.$store.getters.layerFormatData
         },
         curIndex () {
-            return this.$store.state.work.curIndex
+            return this.$store.state.work.curPage.curIndex
         }
     },
     methods: {
