@@ -56,6 +56,8 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/reset.scss';
 @import '../assets/public.scss';
+@import '../assets/delete.scss';
+
 
 $black: #313131;
 
@@ -123,32 +125,6 @@ $black: #313131;
 .pages-b {
 	height: 40px;
 	display: -webkit-box;
-}
-.icon-delete {
-	width: 40px;
-	height: 100%;
-	background-color: transparent;
-	cursor: pointer;
-	display: -webkit-box;
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
-	&::before {
-		content: "";
-		display: block;
-		width: 16px;
-		height: 16px;
-		background-image: url("../assets/svg/delete.svg");
-		background-size: 16px auto;
-		background-position: center;
-		-webkit-transition: transform 0.2s ease-out;
-		transition: transform 0.2s ease-out;
-	}
-	&:hover {
-		&::before {
-			-webkit-transform: scale(1.4);
-			transform: scale(1.4);
-		}
-	}
 }
 .btn-publish {
 	display: block;
