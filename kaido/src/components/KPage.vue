@@ -1,5 +1,5 @@
 <template>
-    <section class="pages-area">
+    <section :class="fold ? 'pages-area' : 'pages-area fold'">
     	<div class="pages-t" v-on:click="toggleFold()">
 			<div class="cube">
 				<div class="front">
@@ -11,26 +11,31 @@
 			</div>
     	</div>
         <ul class="pages-list">
-			<li v-for="(page, index) in pages" :class="curPage === index+1 ? 'current' : ''" v-on:click="selectPage(index)">
-				<i class="icon-delete" v-on:click="deletePage(curPage)"></i>
+			<li v-for="(page, index) in pages" :class="curPageNum === index+1 ? 'current' : ''" v-on:click="selectPage(index)">
+				<i class="icon-delete" v-on:click="deletePage(curPageNum)"></i>
 				第{{index+1}}页
 			</li>
 			<li v-on:click="addPage()">+</li>
         </ul>
         <div class="pages-b">
-        	<button class="btn-publish">发布</button>
+        	<button class="btn-publish" v-on:click="saveViewport()">发布</button>
         </div>
     </section>
 </template>
 
 <script>
 export default {
+    data () {
+        return {
+            fold: true
+        }
+    },
     computed: {
         pages () {
             return this.$store.state.work.pages
         },
-        curPage () {
-            return this.$store.state.work.curPage
+        curPageNum () {
+            return this.$store.state.work.curPageNum
         }
     },
     methods: {
@@ -42,13 +47,26 @@ export default {
             this.$store.dispatch('selectPage', {pageIndex})
         },
 
-        deletePage: function (curPage) {
-            const pageIndex = curPage - 1
+        deletePage: function (curPageNum) {
+            const pageIndex = curPageNum - 1
             this.$store.dispatch('deletePage', {pageIndex})
         },
 
         toggleFold: function () {
-            console.log(this)
+            this.fold = !this.fold
+        },
+
+        saveViewport: function (message) {
+            this.$http.post('http://localhost:3000/work/save', {
+                work: this.$store.state.work
+            })
+            .then((response) => {
+                this.$store.state.work.workId = response.data
+            })
+            .catch((response) => {
+                console.log(response)
+            })
+            this.$store.dispatch('saveWork')
         }
     }
 }

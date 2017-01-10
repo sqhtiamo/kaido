@@ -37,20 +37,22 @@ const schema = new Schema({
     type: Number,
     unique: true,
   },
-  layers: [{
-    content: String,
-    style: {
-      'background-color': String,
-      color: String,
-      height: String,
-      width: String,
-      position: String,
-      top: String,
-      left: String,
-      padding: String,
-      'text-align': String,
-      zIndex: Number,
-    },
+  pages: [{
+    layers: [{
+      content: String,
+      style: {
+        'background-color': String,
+        color: String,
+        height: String,
+        width: String,
+        position: String,
+        top: String,
+        left: String,
+        padding: String,
+        'text-align': String,
+        zIndex: Number,
+      },
+    }],
   }],
 });
 // schema.index({inviter: 1});//查询某个用户邀请的人

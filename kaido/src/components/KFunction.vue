@@ -1,15 +1,15 @@
 <template>
     <!-- 功能操作区 -->
-    <section class="func-area show">
+    <section :class="funcShow ? 'func-area show' : 'func-area'">
         <!-- tab -->
         <div class="func-tab">
-            <p class="current">样式</p>
-            <p>动画</p>
+            <label :class="tabChecked != 0 ? 'current' : '' ">样式<input  type="radio" name="tab" v-model="tabChecked" value="0" /></label>
+            <label :class="tabChecked != 1 ? 'current' : '' ">动画<input type="radio" name="tab" v-model="tabChecked" value="1" /></label>
             <i class="func-tab-slide"></i>
         </div>
 
         <!-- 样式 -->
-        <div class="func-style" style="display: none">
+        <div class="func-style" :style="tabChecked != 0 ? 'display: none' : ''">
             <div class="func-box" v-bind:class="{ show: styleShow === 0 }" > <!-- 添加class"show", 显示内容 -->
                 <div class="func-tit" v-on:click="show(0)">
                     <p>样式</p>
@@ -104,7 +104,7 @@
         </div>
 
         <!-- 动画 -->
-        <div class="func-animation">
+        <div class="func-animation" :style="tabChecked != 1 ? 'display: none' : ''">
             <div class="func-box show">
                 <div class="func-tit">
                     <p>动画1</p>
@@ -172,7 +172,7 @@
 
         <!-- 按钮 -->
         <div class="btn-box">
-            <button class="confirm" v-on:click="saveViewport()">确定</button>
+            <button class="confirm" v-on:click="saveLayer()">确定</button>
             <button class="cancel">清除样式</button>
         </div>
     </section>
@@ -182,15 +182,26 @@
 export default {
     data () {
         return {
+            tabChecked: 0,
             functionShow: 0,
             styleShow: 0
         }
     },
     computed: {
+        layerNum () {
+            console.log(12)
+
+            return this.$store.state.work.curPage.layerNum
+        },
+        funcShow () {
+            console.log(11)
+            return this.$store.state.work.curPage.selectState
+        },
         style () {
-            if (this.$store.state.work.curLayer.layers.length > 0) {
-                const curIndex = this.$store.state.work.curLayer.curIndex
-                return this.$store.state.work.curLayer.layers[curIndex].style
+            console.log(this.$store.state.work.curPage.selectState)
+            if (this.$store.state.work.curPage.layers.length > 0) {
+                const curIndex = this.$store.state.work.curPage.curIndex
+                return this.$store.state.work.curPage.layers[curIndex].style
             } else {
                 return {}
             }
@@ -204,17 +215,8 @@ export default {
                 this.styleShow = -1
             }
         },
-        saveViewport: function (message) {
-            this.$http.post('http://localhost:3000/work/save', {
-                work: this.$store.state.work
-            })
-            .then((response) => {
-                this.$store.state.work.workId = response.data
-            })
-            .catch((response) => {
-                console.log(response)
-            })
-            this.$store.dispatch('saveWork')
+        saveLayer: function () {
+            this.$store.dispatch('saveLayer')
         }
     }
 }
@@ -267,7 +269,7 @@ $black: #313131;
     height: 35px;
     margin-bottom: 10px;
     display: -webkit-box;
-    p {
+    label {
         position: relative;
         z-index: 1;
         height: 100%;
@@ -278,9 +280,14 @@ $black: #313131;
         -webkit-box-pack: center;
         -webkit-transition: color 0.2s ease-in;
         transition: color 0.2s ease-in;
+
+        input {
+            display: none;
+        }
+
         &.current {
             color: #fff;
-            &:first-of-type ~ .func-tab-slide {
+            &:nth-of-type(1) ~ .func-tab-slide {
                 transform: translateX(0);
             }
             &:nth-of-type(2) ~ .func-tab-slide {
@@ -288,6 +295,8 @@ $black: #313131;
             }
         }
     }
+
+
     .func-tab-slide {
         position: absolute;
         top: 0;
