@@ -108,6 +108,7 @@
             <div class="func-box show">
                 <div class="func-tit">
                     <p>动画1</p>
+                    <i class="icon-delete"></i>
                     <i class="ui-arrow-solid"></i>
                 </div>
                 <div class="func-con">
@@ -222,6 +223,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../assets/public.scss';
+@import '../assets/delete.scss';
 
 $bg-color: #e6e6e6;
 $black: #313131;
