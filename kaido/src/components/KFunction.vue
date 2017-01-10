@@ -187,11 +187,8 @@ export default {
     },
     computed: {
         style () {
-            console.log(this.$store.state.work.curLayer.curIndex)
             if (this.$store.state.work.curLayer.layers.length > 0) {
                 const curIndex = this.$store.state.work.curLayer.curIndex
-                console.log(curIndex)
-                console.log(this.$store.state.work.curLayer.layers[0].style)
                 return this.$store.state.work.curLayer.layers[curIndex].style
             } else {
                 return {}
