@@ -7,7 +7,7 @@
             <p>动画</p>
             <i class="func-tab-slide"></i>
         </div>
-        
+
         <!-- 样式 -->
         <div class="func-style" style="display: none">
             <div class="func-box" v-bind:class="{ show: styleShow === 0 }" > <!-- 添加class"show", 显示内容 -->
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- 动画 -->
         <div class="func-animation">
             <div class="func-box show">
@@ -161,7 +161,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 添加动画按钮 -->
             <div class="btn-box">
                 <button class="confirm ">添加动画</button>
@@ -187,12 +187,12 @@ export default {
     },
     computed: {
         style () {
-            console.log(this.$store.state.work.curIndex)
-            if (this.$store.state.work.layers.length > 0) {
-                const curIndex = this.$store.state.work.curIndex
+            console.log(this.$store.state.work.curLayer.curIndex)
+            if (this.$store.state.work.curLayer.layers.length > 0) {
+                const curIndex = this.$store.state.work.curLayer.curIndex
                 console.log(curIndex)
-                console.log(this.$store.state.work.layers[0].style)
-                return this.$store.state.work.layers[curIndex].style
+                console.log(this.$store.state.work.curLayer.layers[0].style)
+                return this.$store.state.work.curLayer.layers[curIndex].style
             } else {
                 return {}
             }
