@@ -30,8 +30,6 @@ export default {
             return this.$store.state.work.pages
         },
         curPage () {
-            console.log(this.$store.state.work.curPage)
-            console.log(this.$store.state.work.pages)
             return this.$store.state.work.curPage
         }
     },

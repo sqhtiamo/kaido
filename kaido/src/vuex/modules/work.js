@@ -9,7 +9,11 @@ const state = {
         layerNum: 0,
         curIndex: -1
     },
-    pages: [{}],
+    pages: [{
+        layers: [],
+        layerNum: 0,
+        curIndex: -1
+    }],
     curPage: 1
 }
 
@@ -43,10 +47,12 @@ const actions = {
     },
 
     selectPage ({commit, state}, {pageIndex}) {
+        commit(types.SAVE_LAYER)
         commit(types.SELECT_PAGE, {pageIndex})
     },
 
     addPage ({commit, state}) {
+        commit(types.SAVE_LAYER)
         commit(types.ADD_PAGE)
     },
 
@@ -111,18 +117,30 @@ const mutations = {
     },
 
     [types.SAVE_LAYER] (state) {
+        state.pages[state.curPage - 1] = state.curLayer
     },
 
     [types.ADD_PAGE] (state) {
-        state.pages.push({})
-        state.curPage++
+        state.curLayer = {
+            layers: [],
+            layerNum: 0,
+            curIndex: -1
+        }
+        state.pages.push(state.curLayer)
+        state.curPage = state.pages.length
     },
 
     [types.SELECT_PAGE] (state, {pageIndex}) {
+        state.curLayer = state.pages[pageIndex]
         state.curPage = pageIndex + 1
     },
 
     [types.DELETE_PAGE] (state, {pageIndex}) {
+        // 如果只剩一页不得删除
+        if (state.pages.length === 1) {
+            return
+        }
+
         state.pages.splice(pageIndex, 1)
         // 删除的是最后一个
         if (pageIndex === state.pages.length) {
