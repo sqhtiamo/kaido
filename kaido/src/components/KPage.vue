@@ -11,11 +11,13 @@
 			</div>
     	</div>
         <ul class="pages-list">
-			<li v-for="(page, index) in pages" :class="curPage === index+1 ? 'current' : ''" v-on:click="selectPage(index)">第{{index+1}}页</li>
+			<li v-for="(page, index) in pages" :class="curPage === index+1 ? 'current' : ''" v-on:click="selectPage(index)">
+				<i class="icon-delete" v-on:click="deletePage(curPage)"></i>
+				第{{index+1}}页
+			</li>
 			<li v-on:click="addPage()">+</li>
         </ul>
         <div class="pages-b">
-    		<i class="icon-delete" v-on:click="deletePage(curPage)"></i>
         	<button class="btn-publish">发布</button>
         </div>
     </section>
@@ -98,8 +100,18 @@ $black: #313131;
 		-webkit-box-align: center;
 		-webkit-transition: background 0.2s linear;
 		transition: background 0.2s linear;
+		.icon-delete {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			display: none;
+		}
 		&.current {
 			background-color: #fff;
+			.icon-delete {
+				display: -webkit-box;
+			}
 		}
 		&:hover {
 			background-color: #fff;
@@ -113,7 +125,7 @@ $black: #313131;
 .icon-delete {
 	width: 40px;
 	height: 100%;
-	background-color: #5c5c5c;
+	background-color: transparent;
 	cursor: pointer;
 	display: -webkit-box;
 	-webkit-box-pack: center;
