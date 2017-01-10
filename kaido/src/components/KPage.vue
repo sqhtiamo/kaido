@@ -11,14 +11,13 @@
 			</div>
     	</div>
         <ul class="pages-list">
-			<li class="current">第1页</li>
-			<li>第2页</li>
-			<li>第3页</li>
-			<li>第4页</li>
+			<li class="current"><i class="icon-delete"></i>第1页</li>
+			<li><i class="icon-delete"></i>第2页</li>
+			<li><i class="icon-delete"></i>第3页</li>
+			<li><i class="icon-delete"></i>第4页</li>
 			<li>+</li>
         </ul>
         <div class="pages-b">
-    		<i class="icon-delete"></i>
         	<button class="btn-publish">发布</button>
         </div>
     </section> 
@@ -77,8 +76,18 @@ $black: #313131;
 		-webkit-box-align: center;
 		-webkit-transition: background 0.2s linear;
 		transition: background 0.2s linear;
+		.icon-delete {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			display: none;
+		}
 		&.current {
 			background-color: #fff;
+			.icon-delete {
+				display: -webkit-box;
+			}
 		}
 		&:hover {
 			background-color: #fff;
@@ -92,7 +101,7 @@ $black: #313131;
 .icon-delete {
 	width: 40px;
 	height: 100%;
-	background-color: #5c5c5c;
+	background-color: transparent;
 	cursor: pointer;
 	display: -webkit-box;
 	-webkit-box-pack: center;
