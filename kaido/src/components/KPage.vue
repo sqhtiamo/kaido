@@ -11,19 +11,45 @@
 			</div>
     	</div>
         <ul class="pages-list">
-			<li class="current"><i class="icon-delete"></i>第1页</li>
-			<li><i class="icon-delete"></i>第2页</li>
-			<li><i class="icon-delete"></i>第3页</li>
-			<li><i class="icon-delete"></i>第4页</li>
-			<li>+</li>
+			<li v-for="(page, index) in pages" :class="curPage === index+1 ? 'current' : ''" v-on:click="selectPage(index)">
+				<i class="icon-delete" v-on:click="deletePage(curPage)"></i>
+				第{{index+1}}页
+			</li>
+			<li v-on:click="addPage()">+</li>
         </ul>
         <div class="pages-b">
         	<button class="btn-publish">发布</button>
         </div>
-    </section> 
+    </section>
 </template>
 
 <script>
+export default {
+    computed: {
+        pages () {
+            return this.$store.state.work.pages
+        },
+        curPage () {
+            console.log(this.$store.state.work.curPage)
+            console.log(this.$store.state.work.pages)
+            return this.$store.state.work.curPage
+        }
+    },
+    methods: {
+        addPage: function () {
+            this.$store.dispatch('addPage')
+        },
+
+        selectPage: function (pageIndex) {
+            this.$store.dispatch('selectPage', {pageIndex})
+        },
+
+        deletePage: function (curPage) {
+            const pageIndex = curPage - 1
+            this.$store.dispatch('deletePage', {pageIndex})
+        }
+    }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

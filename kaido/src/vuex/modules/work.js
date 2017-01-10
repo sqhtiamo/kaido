@@ -4,15 +4,19 @@ import * as types from '../mutation-types'
 // shape: [{ id, quantity }]
 
 const state = {
-    layers: [],
-    layerNum: 0,
-    curIndex: -1
+    curLayer: {
+        layers: [],
+        layerNum: 0,
+        curIndex: -1
+    },
+    pages: [{}],
+    curPage: 1
 }
 
 // getters
 const getters = {
     layerFormatData: state => {
-        return state.layers.map((layer) => {
+        return state.curLayer.layers.map((layer) => {
             return {
                 style: Object.keys(layer.style).map((styleKey) => {
                     return styleKey + ':' + layer.style[styleKey] + ';'
@@ -38,6 +42,18 @@ const actions = {
         commit(types.SELECT_LAYER, {index})
     },
 
+    selectPage ({commit, state}, {pageIndex}) {
+        commit(types.SELECT_PAGE, {pageIndex})
+    },
+
+    addPage ({commit, state}) {
+        commit(types.ADD_PAGE)
+    },
+
+    deletePage ({commit, state}, {pageIndex}) {
+        commit(types.DELETE_PAGE, {pageIndex})
+    },
+
     saveWork ({ commit, state }) {
         // this.$http.get('/someUrl').then((response) => {
         // // success callback
@@ -51,10 +67,10 @@ const actions = {
 const mutations = {
 
     [types.ADD_LAYER] (state, { type }) {
-        state.layers.forEach((layer) => {
+        state.curLayer.layers.forEach((layer) => {
             layer.selected = false
         })
-        state.layers.push({
+        state.curLayer.layers.push({
             content: '请输入的文字',
             style: {
                 position: 'absolute',
@@ -68,25 +84,25 @@ const mutations = {
                 'background-color': 'transparent',
                 color: '#000',
                 // 'line-height': '16',
-                zIndex: state.layerNum
+                zIndex: state.curLayer.layerNum
             },
             selected: true,
             type,
-            index: state.layerNum
+            index: state.curLayer.layerNum
         })
-        state.curIndex = state.layerNum
-        state.layerNum++
+        state.curLayer.curIndex = state.curLayer.layerNum
+        state.curLayer.layerNum++
     },
 
     [types.UPDATE_LAYER] (state, {index, options}) {
-        const layer = state.layers.find(p => p.index === index)
+        const layer = state.curLayer.layers.find(p => p.index === index)
         Object.keys(options).forEach((styleKey) => {
             layer.style[styleKey] = options[styleKey]
         })
     },
 
     [types.SELECT_LAYER] (state, {index}) {
-        state.curIndex = index
+        state.curLayer.curIndex = index
     },
 
     [types.DELETE_LAYER] (state) {
@@ -95,8 +111,24 @@ const mutations = {
     },
 
     [types.SAVE_LAYER] (state) {
-    }
+    },
 
+    [types.ADD_PAGE] (state) {
+        state.pages.push({})
+        state.curPage++
+    },
+
+    [types.SELECT_PAGE] (state, {pageIndex}) {
+        state.curPage = pageIndex + 1
+    },
+
+    [types.DELETE_PAGE] (state, {pageIndex}) {
+        state.pages.splice(pageIndex, 1)
+        // 删除的是最后一个
+        if (pageIndex === state.pages.length) {
+            state.curPage--
+        }
+    }
 }
 
 export default {
