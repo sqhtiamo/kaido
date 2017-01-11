@@ -19,9 +19,11 @@ const state = {
 }
 
 const styleKeys = {
-    plainKey: ['color', 'background-color', 'border-color', 'opacity', 'zIndex'],
-    pxKey: ['border-width', 'border-radius', 'width', 'line-height', 'font-size'],
-    optKey: []
+    plain: ['color', 'background-color', 'border-color', 'opacity', 'zIndex', 'border-style'],
+    px: ['border-width', 'border-radius', 'width', 'line-height', 'font-size'],
+    option: {
+        // 'border-style': ['solid', 'dashed']
+    }
 }
 // getters
 const getters = {
@@ -29,14 +31,19 @@ const getters = {
         return state.curPage.layers.map((layer) => {
             return {
                 style: Object.keys(layer.style).map((styleKey) => {
-                    if (styleKeys.plainKey.indexOf(styleKey) !== -1) {
-                        return styleKey + ':' + layer.style[styleKey] + ';'
-                    } else if (styleKeys.pxKey.indexOf(styleKey) !== -1) {
-                        console.log(styleKey)
+                    if (styleKeys.px.indexOf(styleKey) !== -1) {
                         return styleKey + ':' + layer.style[styleKey] + 'px;'
+                    } else if (styleKeys.option[styleKey]) {
+                        return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
                     }
                     return styleKey + ':' + layer.style[styleKey] + ';'
                 }).join(''),
+                animation: {
+                    class: layer.animation.map((animation) => {
+                        return animation.class
+                    }).join(' '),
+                    style: ''
+                },
                 index: layer.index,
                 content: layer.content
             }
@@ -77,11 +84,7 @@ const actions = {
     },
 
     saveWork ({ commit, state }) {
-        // this.$http.get('/someUrl').then((response) => {
-        // // success callback
-        // }, (response) => {
-        // // error callback
-        // })
+        commit(types.SAVE_LAYER)
     }
 }
 
@@ -113,6 +116,10 @@ const mutations = {
                 'line-height': 16,
                 zIndex: state.curPage.layerNum
             },
+            animation: [{
+                class: 'tada',
+                style: ''
+            }],
             selected: true,
             type,
             index: state.curPage.layerNum
@@ -125,8 +132,6 @@ const mutations = {
     [types.UPDATE_LAYER] (state, {index, options}) {
         const layer = state.curPage.layers.find(p => p.index === index)
         Object.keys(options).forEach((styleKey) => {
-            console.log(styleKey)
-            console.log(styleKeys)
             layer.style[styleKey] = options[styleKey]
         })
     },
@@ -168,7 +173,6 @@ const mutations = {
             return
         }
 
-        console.log(pageIndex)
         state.pages.splice(pageIndex, 1)
         // 删除的是最后一个
         if (pageIndex === state.pages.length) {

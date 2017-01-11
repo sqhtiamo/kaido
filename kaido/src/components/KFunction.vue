@@ -62,9 +62,9 @@
                     </div>
                     <div class="func-line">
                         <h4>样式</h4>
-                        <select>
-                            <option>直线</option>
-                            <option>虚线</option>
+                        <select v-model="style['border-style']">
+                            <option value="solid">直线</option>
+                            <option value="dashed">虚线</option>
                         </select>
                     </div>
                     <div class="func-line">
@@ -78,6 +78,7 @@
             </div>
 
             <!-- 阴影 -->
+            <!--
             <div class="func-box" v-bind:class="{ show: styleShow === 2 }">
                 <div class="func-tit" v-on:click="show(2)">
                     <p>阴影</p>
@@ -105,37 +106,38 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
 
         <!-- 动画 -->
         <div class="func-animation" :style="tabChecked != 1 ? 'display: none' : ''">
-            <div class="func-box show">
+            <div class="func-box show" v-for="(animation, index) in animations ">
                 <div class="func-tit">
-                    <p>动画1</p>
+                    <p>动画{{index+1}}</p>
                     <i class="icon-delete"></i>
                     <i class="ui-arrow-solid"></i>
                 </div>
                 <div class="func-con">
                     <div class="func-line">
                         <h4>方式</h4>
-                        <select>
+                        <select v-model="animation.class">
                             <optgroup label="进入">
-                                <option>淡入</option>
-                                <option>移入</option>
-                                <option>弹入</option>
-                                <option>中心放大</option>
+                                <option value="fadeIn">淡入</option>
+                                <option value="">移入</option>
+                                <option value="">弹入</option>
+                                <option value="zoomIn">中心放大</option>
                             </optgroup>
                             <optgroup label="强调">
-                                <option>摇摆</option>
-                                <option>闪烁</option>
-                                <option>旋转</option>
-                                <option>放大抖动</option>
+                                <option value="shake">摇摆</option>
+                                <option value="flash">闪烁</option>
+                                <option value="rotate">旋转</option>
+                                <option value="tada">放大抖动</option>
                             </optgroup>
                             <optgroup label="退出">
-                                <option>淡出</option>
-                                <option>移出</option>
-                                <option>弹出</option>
-                                <option>中心缩小</option>
+                                <option value="fadeOut">淡出</option>
+                                <option value="">移出</option>
+                                <option value="">弹出</option>
+                                <option value="">中心缩小</option>
                             </optgroup>
                         </select>
                     </div>
@@ -202,6 +204,15 @@ export default {
             if (this.$store.state.work.curPage.layers.length > 0) {
                 const curIndex = this.$store.state.work.curPage.curIndex
                 return this.$store.state.work.curPage.layers[curIndex].style
+            } else {
+                return {}
+            }
+        },
+        animations () {
+            if (this.$store.state.work.curPage.layers.length > 0) {
+                const curIndex = this.$store.state.work.curPage.curIndex
+                console.log(this.$store.state.work.curPage.layers[curIndex].animation[0].class)
+                return this.$store.state.work.curPage.layers[curIndex].animation
             } else {
                 return {}
             }

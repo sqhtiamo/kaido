@@ -24,7 +24,7 @@
         <!-- 手机主要视区 -->
         <div class="phone-main-area">
 
-            <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="layer.style" class="drag" v-on:click="selectLayer(index)">
+            <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="layer.style" :class="[layer.animation.class , 'drag', 'animated', 'infinite']" v-on:click="selectLayer(index)">
                 <div contenteditable="true" >{{ layer.content }}</div>
                 <div v-if="curIndex === layer.index" class="select-func">
                     <div class="rotate-circle"></div>
