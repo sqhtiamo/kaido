@@ -18,12 +18,23 @@ const state = {
     curPageNum: 1
 }
 
+const styleKeys = {
+    plainKey: ['color', 'background-color', 'border-color', 'opacity', 'zIndex'],
+    pxKey: ['border-width', 'border-radius', 'width', 'line-height'],
+    optKey: []
+}
 // getters
 const getters = {
     layerFormatData: state => {
         return state.curPage.layers.map((layer) => {
             return {
                 style: Object.keys(layer.style).map((styleKey) => {
+                    if (styleKeys.plainKey.indexOf(styleKey) !== -1) {
+                        return styleKey + ':' + layer.style[styleKey] + ';'
+                    } else if (styleKeys.pxKey.indexOf(styleKey) !== -1) {
+                        console.log(styleKey)
+                        return styleKey + ':' + layer.style[styleKey] + 'px;'
+                    }
                     return styleKey + ':' + layer.style[styleKey] + ';'
                 }).join(''),
                 index: layer.index,
@@ -93,8 +104,12 @@ const mutations = {
                 padding: '10px',
                 opacity: 1,
                 'background-color': 'transparent',
+                'border-width': '1',
+                'border-radius': '0',
+                'border-style': 'solid',
+                'border-color': 'transparent',
                 color: '#000',
-                // 'line-height': '16',
+                'line-height': '16',
                 zIndex: state.curPage.layerNum
             },
             selected: true,
@@ -109,15 +124,15 @@ const mutations = {
     [types.UPDATE_LAYER] (state, {index, options}) {
         const layer = state.curPage.layers.find(p => p.index === index)
         Object.keys(options).forEach((styleKey) => {
+            console.log(styleKey)
+            console.log(styleKeys)
             layer.style[styleKey] = options[styleKey]
         })
     },
 
     [types.SELECT_LAYER] (state, {index}) {
-        console.log(221)
         state.curPage.selectState = true
         state.curPage.curIndex = index
-        console.log(state.curPage)
     },
 
     [types.DELETE_LAYER] (state) {

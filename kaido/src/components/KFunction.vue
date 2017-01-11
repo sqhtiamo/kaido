@@ -50,11 +50,11 @@
                 <div class="func-con">
                     <div class="func-line">
                         <h4>尺寸</h4>
-                        <input type="number" />
+                        <input type="number" v-model="style['border-width']" />
                     </div>
                     <div class="func-line">
                         <h4>圆角</h4>
-                        <input type="number" />
+                        <input type="number" v-model="style['border-radius']" />
                     </div>
                     <div class="func-line">
                         <h4>样式</h4>
@@ -66,7 +66,7 @@
                     <div class="func-line">
                         <h4>颜色</h4>
                         <div class="color-btn">
-                            <input type="color" />
+                            <input type="color" v-model="style['border-color']" />
                         </div>
                         <input type="text" />
                     </div>
