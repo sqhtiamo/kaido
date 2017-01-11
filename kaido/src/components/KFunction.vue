@@ -152,15 +152,15 @@
                     </div>
                     <div class="func-line">
                         <h4>时间</h4>
-                        <input type="number" />
+                        <input type="number" v-model="animation.style['animation-duration']" />
                     </div>
                     <div class="func-line">
                         <h4>延迟</h4>
-                        <input type="number" />
+                        <input type="number" v-model="animation.style['animation-delay']"/>
                     </div>
                     <div class="func-line">
                         <h4>次数</h4>
-                        <input type="number" />
+                        <input type="number" v-model="animation.style['animation-iteration-count']"/>
                         <label class="ui-checkbox">
                             <input type="checkbox" />
                             <p>循环</p>
@@ -172,14 +172,14 @@
             <!-- 添加动画按钮 -->
             <div class="btn-box">
                 <button class="confirm ">添加动画</button>
-                <button class="cancel">预览动画</button>
+                <button class="cancel" v-on:click="previewAnimation()">预览动画</button>
             </div>
         </div>
 
         <!-- 按钮 -->
         <div class="btn-box">
             <button class="confirm" v-on:click="saveLayer()">确定</button>
-            <button class="cancel">清除样式</button>
+            <button class="cancel" v-on:click="previewAnimation()">清除样式</button>
         </div>
     </section>
 </template>
@@ -211,7 +211,6 @@ export default {
         animations () {
             if (this.$store.state.work.curPage.layers.length > 0) {
                 const curIndex = this.$store.state.work.curPage.curIndex
-                console.log(this.$store.state.work.curPage.layers[curIndex].animation[0].class)
                 return this.$store.state.work.curPage.layers[curIndex].animation
             } else {
                 return {}
@@ -228,6 +227,11 @@ export default {
         },
         saveLayer: function () {
             this.$store.dispatch('saveLayer')
+        },
+        previewAnimation: function () {
+            console.log(1)
+            this.$root.$emit('previewAnimation')
+            // console.log(this)
         }
     }
 }

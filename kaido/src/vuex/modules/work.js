@@ -21,6 +21,7 @@ const state = {
 const styleKeys = {
     plain: ['color', 'background-color', 'border-color', 'opacity', 'zIndex', 'border-style'],
     px: ['border-width', 'border-radius', 'width', 'line-height', 'font-size'],
+    second: ['animation-duration', 'animation-delay'],
     option: {
         // 'border-style': ['solid', 'dashed']
     }
@@ -30,19 +31,42 @@ const getters = {
     layerFormatData: state => {
         return state.curPage.layers.map((layer) => {
             return {
-                style: Object.keys(layer.style).map((styleKey) => {
+                style: Object.keys(layer.style).reduce((style, styleKey) => {
                     if (styleKeys.px.indexOf(styleKey) !== -1) {
-                        return styleKey + ':' + layer.style[styleKey] + 'px;'
-                    } else if (styleKeys.option[styleKey]) {
-                        return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
+                        style[styleKey] = layer.style[styleKey] + 'px'
+                    } else {
+                        style[styleKey] = layer.style[styleKey]
                     }
-                    return styleKey + ':' + layer.style[styleKey] + ';'
-                }).join(''),
+                    return style
+                    // } else if (styleKeys.option[styleKey]) {
+                    //     return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
+                    // }
+                }, {}),
                 animation: {
                     class: layer.animation.map((animation) => {
                         return animation.class
                     }).join(' '),
-                    style: ''
+                    // 先做单动画
+                    style: layer.animation && layer.animation[0]
+                        ? Object.keys(layer.animation[0].style).reduce((style, styleKey) => {
+                            console.log(styleKey)
+                            if (styleKeys.px.indexOf(styleKey) !== -1) {
+                                style[styleKey] = layer.animation[0].style[styleKey] + 'px'
+                            } if (styleKeys.second.indexOf(styleKey) !== -1) {
+                                if (layer.animation[0].style[styleKey] === 0) {
+                                    style[styleKey] = layer.animation[0].style[styleKey]
+                                } else {
+                                    style[styleKey] = layer.animation[0].style[styleKey] + 's'
+                                }
+                            } else {
+                                style[styleKey] = layer.animation[0].style[styleKey]
+                            }
+                            return style
+                            // } else if (styleKeys.option[styleKey]) {
+                            //     return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
+                            // }
+                        }, {})
+                        : {}
                 },
                 index: layer.index,
                 content: layer.content
@@ -117,8 +141,12 @@ const mutations = {
                 zIndex: state.curPage.layerNum
             },
             animation: [{
-                class: 'tada',
-                style: ''
+                class: 'fadeIn',
+                style: {
+                    'animation-duration': 0,
+                    'animation-delay': 0,
+                    'animation-iteration-count': 1
+                }
             }],
             selected: true,
             type,

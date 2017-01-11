@@ -2,7 +2,7 @@
     <article class="page-wrapper">
         <section class="main-area">
             <k-shortcut></k-shortcut>
-            <k-view></k-view>
+            <k-view :preview-animation="previewAnimation"></k-view>
             <k-function></k-function>
         </section>
         <k-page></k-page>
@@ -21,6 +21,19 @@ export default {
         KView,
         KFunction,
         KPage
+    },
+    data () {
+        return {
+            previewAnimation: false
+        }
+    },
+    created () {
+        this.$root.$on('previewAnimation', (el) => {
+            this.previewAnimation = false
+            setTimeout(() => {
+                this.previewAnimation = true
+            })
+        })
     }
 }
 </script>

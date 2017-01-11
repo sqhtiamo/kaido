@@ -24,7 +24,7 @@
         <!-- 手机主要视区 -->
         <div class="phone-main-area">
 
-            <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="layer.style" :class="[layer.animation.class , 'drag', 'animated', 'infinite']" v-on:click="selectLayer(index)">
+            <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="[layer.style, layer.animation.style]" :class="[previewAnimation ? layer.animation.class : '' , 'drag', 'animated']" v-on:click="selectLayer(index)">
                 <div contenteditable="true" >{{ layer.content }}</div>
                 <div v-if="curIndex === layer.index" class="select-func">
                     <div class="rotate-circle"></div>
@@ -85,8 +85,10 @@
 
 <script>
 export default {
+    props: ['previewAnimation'],
     computed: {
         layers () {
+            // console.log(this.$store.getters.layerFormatData[0].animation.style)
             return this.$store.getters.layerFormatData
         },
         curIndex () {
