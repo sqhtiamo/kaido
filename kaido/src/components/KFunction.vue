@@ -31,6 +31,10 @@
                         <input type="text" />
                     </div>
                     <div class="func-line">
+                        <h4>文字大小</h4>
+                        <input type="number" v-model="style['font-size']" />
+                    </div>
+                    <div class="func-line">
                         <h4>透明度</h4>
                         <input type="number" v-model="style.opacity" />
                     </div>

@@ -20,7 +20,7 @@ const state = {
 
 const styleKeys = {
     plainKey: ['color', 'background-color', 'border-color', 'opacity', 'zIndex'],
-    pxKey: ['border-width', 'border-radius', 'width', 'line-height'],
+    pxKey: ['border-width', 'border-radius', 'width', 'line-height', 'font-size'],
     optKey: []
 }
 // getters
@@ -104,12 +104,13 @@ const mutations = {
                 padding: '10px',
                 opacity: 1,
                 'background-color': 'transparent',
-                'border-width': '1',
+                'border-width': '0',
                 'border-radius': '0',
                 'border-style': 'solid',
-                'border-color': 'transparent',
+                'border-color': '#000000',
                 color: '#000',
-                'line-height': '16',
+                'font-size': 14,
+                'line-height': 16,
                 zIndex: state.curPage.layerNum
             },
             selected: true,
