@@ -41,7 +41,7 @@
                 function up () {
                     window.removeEventListener('mousemove', move)
                     window.removeEventListener('mouseup', up)
-                    binding.value.updateLayer(binding.value.index, {
+                    binding.value.updateLayerStyle(binding.value.index, {
                         left: el.style.left,
                         top: el.style.top
                     })

@@ -49,7 +49,6 @@ const getters = {
                     // 先做单动画
                     style: layer.animation && layer.animation[0]
                         ? Object.keys(layer.animation[0].style).reduce((style, styleKey) => {
-                            console.log(styleKey)
                             if (styleKeys.px.indexOf(styleKey) !== -1) {
                                 style[styleKey] = layer.animation[0].style[styleKey] + 'px'
                             } if (styleKeys.second.indexOf(styleKey) !== -1) {
@@ -81,8 +80,12 @@ const actions = {
         commit(types.ADD_LAYER, type)
     },
 
-    updateLayer ({ commit, state }, {index, options}) {
-        commit(types.UPDATE_LAYER, {index, options})
+    updateLayerStyle ({ commit, state }, {index, options}) {
+        commit(types.UPDATE_LAYER_STYLE, {index, options})
+    },
+
+    updateLayerContent ({ commit, state }, {index, content}) {
+        commit(types.UPDATE_LAYER_CONTENT, {index, content})
     },
 
     selectLayer ({ commit, state }, {index}) {
@@ -120,7 +123,7 @@ const mutations = {
             layer.selected = false
         })
         state.curPage.layers.push({
-            content: '请输入的文字',
+            content: '',
             style: {
                 position: 'absolute',
                 left: Number(Math.random() * 200) + 'px',
@@ -157,11 +160,16 @@ const mutations = {
         state.curPage.layerNum++
     },
 
-    [types.UPDATE_LAYER] (state, {index, options}) {
+    [types.UPDATE_LAYER_STYLE] (state, {index, options}) {
         const layer = state.curPage.layers.find(p => p.index === index)
         Object.keys(options).forEach((styleKey) => {
             layer.style[styleKey] = options[styleKey]
         })
+    },
+
+    [types.UPDATE_LAYER_CONTENT] (state, {index, content}) {
+        const layer = state.curPage.layers.find(p => p.index === index)
+        layer.content = content
     },
 
     [types.SELECT_LAYER] (state, {index}) {

@@ -24,8 +24,8 @@
         <!-- 手机主要视区 -->
         <div class="phone-main-area">
 
-            <div v-for="(layer, index) in layers " v-drag="{updateLayer, index}" :style="[layer.style, layer.animation.style]" :class="[previewAnimation ? layer.animation.class : '' , 'drag', 'animated']" v-on:click="selectLayer(index)">
-                <div contenteditable="true" >{{ layer.content }}</div>
+            <div v-for="(layer, index) in layers " v-drag="{updateLayerStyle, index}" :style="[layer.style, layer.animation.style]" :class="[previewAnimation ? layer.animation.class : '' , 'drag', 'animated']" v-on:click="selectLayer(index)">
+                <div @keyup="updateLayerContent(index, $event)" contenteditable="true" style="user-modify: read-write-plaintext-only;">请输入文字</div>
                 <div v-if="curIndex === layer.index" class="select-func">
                     <div class="rotate-circle"></div>
                     <div class="rotate-line"></div>
@@ -99,8 +99,14 @@ export default {
         selectLayer: function (index) {
             this.$store.dispatch('selectLayer', {index})
         },
-        updateLayer: function (index, options) {
-            this.$store.dispatch('updateLayer', {index, options})
+        updateLayerStyle: function (index, options) {
+            this.$store.dispatch('updateLayerStyle', {index, options})
+        },
+        updateLayerContent: function (index, event) {
+            console.log(event.srcElement.innerHTML)
+            var content = event.srcElement.innerHTML
+            console.log(content)
+            this.$store.dispatch('updateLayerContent', {index, content})
         }
     }
 }

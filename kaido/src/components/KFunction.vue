@@ -229,9 +229,7 @@ export default {
             this.$store.dispatch('saveLayer')
         },
         previewAnimation: function () {
-            console.log(1)
             this.$root.$emit('previewAnimation')
-            // console.log(this)
         }
     }
 }
