@@ -28,6 +28,19 @@ export default {
         }
     },
     created () {
+        //
+        this.$http.get('http://localhost:3000/work/get?id=59', {
+        })
+        .then((response) => {
+            console.log(response.data.pages[0])
+            this.$store.state.work = response.data
+            this.$store.state.work.curPage = response.data.pages[0]
+            console.log(this.$store.state.work)
+        })
+        .catch((response) => {
+            console.log(response)
+        })
+        this.$store.dispatch('saveWork')
         this.$root.$on('previewAnimation', (el) => {
             this.previewAnimation = false
             setTimeout(() => {

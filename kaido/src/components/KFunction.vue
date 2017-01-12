@@ -110,71 +110,7 @@
         </div>
 
         <!-- 动画 -->
-        <div class="func-animation" :style="tabChecked != 1 ? 'display: none' : ''">
-            <div class="func-box show" v-for="(animation, index) in animations ">
-                <div class="func-tit">
-                    <p>动画{{index+1}}</p>
-                    <i class="icon-delete"></i>
-                    <i class="ui-arrow-solid"></i>
-                </div>
-                <div class="func-con">
-                    <div class="func-line">
-                        <h4>方式</h4>
-                        <select v-model="animation.class">
-                            <optgroup label="进入">
-                                <option value="fadeIn">淡入</option>
-                                <option value="">移入</option>
-                                <option value="">弹入</option>
-                                <option value="zoomIn">中心放大</option>
-                            </optgroup>
-                            <optgroup label="强调">
-                                <option value="shake">摇摆</option>
-                                <option value="flash">闪烁</option>
-                                <option value="rotate">旋转</option>
-                                <option value="tada">放大抖动</option>
-                            </optgroup>
-                            <optgroup label="退出">
-                                <option value="fadeOut">淡出</option>
-                                <option value="">移出</option>
-                                <option value="">弹出</option>
-                                <option value="">中心缩小</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="func-line">
-                        <h4>方向</h4>
-                        <select>
-                            <option>从左向右</option>
-                            <option>从上到下</option>
-                            <option>从右向左</option>
-                            <option>从下到上</option>
-                        </select>
-                    </div>
-                    <div class="func-line">
-                        <h4>时间</h4>
-                        <input type="number" v-model="animation.style['animation-duration']" />
-                    </div>
-                    <div class="func-line">
-                        <h4>延迟</h4>
-                        <input type="number" v-model="animation.style['animation-delay']"/>
-                    </div>
-                    <div class="func-line">
-                        <h4>次数</h4>
-                        <input type="number" v-model="animation.style['animation-iteration-count']"/>
-                        <label class="ui-checkbox">
-                            <input type="checkbox" />
-                            <p>循环</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
 
-            <!-- 添加动画按钮 -->
-            <div class="btn-box">
-                <button class="confirm ">添加动画</button>
-                <button class="cancel" v-on:click="previewAnimation()">预览动画</button>
-            </div>
-        </div>
 
         <!-- 按钮 -->
         <div class="btn-box">

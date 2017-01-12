@@ -43,29 +43,31 @@ const getters = {
                     // }
                 }, {}),
                 animation: {
-                    class: layer.animation.map((animation) => {
-                        return animation.class
-                    }).join(' '),
+                    class: '',
+                    // layer.animation.map((animation) => {
+                    //     return animation.class
+                    // }).join(' '),
                     // 先做单动画
-                    style: layer.animation && layer.animation[0]
-                        ? Object.keys(layer.animation[0].style).reduce((style, styleKey) => {
-                            if (styleKeys.px.indexOf(styleKey) !== -1) {
-                                style[styleKey] = layer.animation[0].style[styleKey] + 'px'
-                            } if (styleKeys.second.indexOf(styleKey) !== -1) {
-                                if (layer.animation[0].style[styleKey] === 0) {
-                                    style[styleKey] = layer.animation[0].style[styleKey]
-                                } else {
-                                    style[styleKey] = layer.animation[0].style[styleKey] + 's'
-                                }
-                            } else {
-                                style[styleKey] = layer.animation[0].style[styleKey]
-                            }
-                            return style
-                            // } else if (styleKeys.option[styleKey]) {
-                            //     return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
-                            // }
-                        }, {})
-                        : {}
+                    style: {}
+                    // layer.animation && layer.animation[0]
+                    //     ? Object.keys(layer.animation[0].style).reduce((style, styleKey) => {
+                    //         if (styleKeys.px.indexOf(styleKey) !== -1) {
+                    //             style[styleKey] = layer.animation[0].style[styleKey] + 'px'
+                    //         } if (styleKeys.second.indexOf(styleKey) !== -1) {
+                    //             if (layer.animation[0].style[styleKey] === 0) {
+                    //                 style[styleKey] = layer.animation[0].style[styleKey]
+                    //             } else {
+                    //                 style[styleKey] = layer.animation[0].style[styleKey] + 's'
+                    //             }
+                    //         } else {
+                    //             style[styleKey] = layer.animation[0].style[styleKey]
+                    //         }
+                    //         return style
+                    //         // } else if (styleKeys.option[styleKey]) {
+                    //         //     return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
+                    //         // }
+                    //     }, {})
+                    //     : {}
                 },
                 index: layer.index,
                 content: layer.content
