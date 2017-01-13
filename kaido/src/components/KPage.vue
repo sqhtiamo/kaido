@@ -158,6 +158,9 @@ $black: #313131;
 	color: #fff;
 	font-size: 16px;
 	-webkit-box-flex: 1;
+	&:hover {
+		background-color: hsla(0, 0%, 9%, 1);
+	}
 }
 .pages-t {
   	position: relative;
@@ -206,6 +209,12 @@ $black: #313131;
 		-webkit-transform: rotate(180deg);
 		transform: rotate(180deg);
 	}
+    &:hover {
+    	.arrow {
+			-webkit-transform: rotate(180deg) scale(1.1);
+			transform: rotate(180deg) scale(1.1);
+    	}
+    }
 }
 .arrow {
 	display: -webkit-box;

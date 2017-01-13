@@ -291,36 +291,38 @@ $black: #313131;
         display: -webkit-box;
         -webkit-box-align: center;
         -webkit-box-pack: center;
-        -webkit-transition: color 0.2s ease-in;
-        transition: color 0.2s ease-in;
-
+        -webkit-transition: background 0.15s ease-in;
+        transition: background 0.15s ease-in;
+        
         input {
             display: none;
         }
 
         &.current {
-            color: #fff;
-            &:nth-of-type(1) ~ .func-tab-slide {
-                transform: translateX(0);
-            }
-            &:nth-of-type(2) ~ .func-tab-slide {
-                transform: translateX(100%);
-            }
+            // color: #fff;
+            // &:nth-of-type(1) ~ .func-tab-slide {
+            //     transform: translateX(0);
+            // }
+            // &:nth-of-type(2) ~ .func-tab-slide {
+            //     transform: translateX(100%);
+            // }
+            background-color: hsl(0%, 0%, 90%);
         }
     }
 
-
-    .func-tab-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 100%/$amount;
-        height: 100%;
-        background-color: nth($black,1 );
-        -webkit-transition: transform 0.2s ease-in;
-        transition: transform 0.2s ease-in;
-    }
+    // .func-tab-slide {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     display: block;
+    //     width: 100%/$amount;
+    //     height: 100%;
+    //     background-color: hsl(0%, 0%, 90%);
+    //     -webkit-transition: transform 0.2s ease-in;
+    //     transition: transform 0.2s ease-in;
+    //     -webkit-box-sizing: border-box;
+    //     box-sizing: border-box;
+    // }
 }
 .func-box {
     &.show {
