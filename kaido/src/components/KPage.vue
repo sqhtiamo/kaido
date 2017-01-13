@@ -32,6 +32,7 @@ export default {
     },
     computed: {
         pages () {
+            console.log(this.$store.state.work.pages.length)
             return this.$store.state.work.pages
         },
         curPageNum () {

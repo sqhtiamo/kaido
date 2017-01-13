@@ -43,31 +43,29 @@ const getters = {
                     // }
                 }, {}),
                 animation: {
-                    class: '',
-                    // layer.animation.map((animation) => {
-                    //     return animation.class
-                    // }).join(' '),
+                    class: layer.animation.map((animation) => {
+                        return animation.class
+                    }).join(' '),
                     // 先做单动画
-                    style: {}
-                    // layer.animation && layer.animation[0]
-                    //     ? Object.keys(layer.animation[0].style).reduce((style, styleKey) => {
-                    //         if (styleKeys.px.indexOf(styleKey) !== -1) {
-                    //             style[styleKey] = layer.animation[0].style[styleKey] + 'px'
-                    //         } if (styleKeys.second.indexOf(styleKey) !== -1) {
-                    //             if (layer.animation[0].style[styleKey] === 0) {
-                    //                 style[styleKey] = layer.animation[0].style[styleKey]
-                    //             } else {
-                    //                 style[styleKey] = layer.animation[0].style[styleKey] + 's'
-                    //             }
-                    //         } else {
-                    //             style[styleKey] = layer.animation[0].style[styleKey]
-                    //         }
-                    //         return style
-                    //         // } else if (styleKeys.option[styleKey]) {
-                    //         //     return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
-                    //         // }
-                    //     }, {})
-                    //     : {}
+                    style: layer.animation && layer.animation[0]
+                        ? Object.keys(layer.animation[0].style).reduce((style, styleKey) => {
+                            if (styleKeys.px.indexOf(styleKey) !== -1) {
+                                style[styleKey] = layer.animation[0].style[styleKey] + 'px'
+                            } if (styleKeys.second.indexOf(styleKey) !== -1) {
+                                if (layer.animation[0].style[styleKey] === 0) {
+                                    style[styleKey] = layer.animation[0].style[styleKey]
+                                } else {
+                                    style[styleKey] = layer.animation[0].style[styleKey] + 's'
+                                }
+                            } else {
+                                style[styleKey] = layer.animation[0].style[styleKey]
+                            }
+                            return style
+                            // } else if (styleKeys.option[styleKey]) {
+                            //     return styleKey + ':' + styleKeys.option[styleKey][layer.style[styleKey]] + ';'
+                            // }
+                        }, {})
+                        : {}
                 },
                 index: layer.index,
                 content: layer.content
@@ -78,8 +76,8 @@ const getters = {
 
 // actions
 const actions = {
-    addLayer ({ commit, state }, type) {
-        commit(types.ADD_LAYER, type)
+    addLayer ({ commit, state }, {layerType}) {
+        commit(types.ADD_LAYER, {layerType})
     },
 
     updateLayerStyle ({ commit, state }, {index, options}) {
@@ -99,6 +97,7 @@ const actions = {
     },
 
     selectPage ({commit, state}, {pageIndex}) {
+        console.log(pageIndex)
         commit(types.SAVE_LAYER)
         commit(types.SELECT_PAGE, {pageIndex})
     },
@@ -120,7 +119,7 @@ const actions = {
 // mutations
 const mutations = {
 
-    [types.ADD_LAYER] (state, { type }) {
+    [types.ADD_LAYER] (state, {layerType}) {
         state.curPage.layers.forEach((layer) => {
             layer.selected = false
         })
@@ -154,7 +153,7 @@ const mutations = {
                 }
             }],
             selected: true,
-            type,
+            layerType,
             index: state.curPage.layerNum
         })
         state.curPage.selectState = true
@@ -201,6 +200,9 @@ const mutations = {
     },
 
     [types.SELECT_PAGE] (state, {pageIndex}) {
+        console.log(pageIndex)
+        console.log(state.pages[pageIndex])
+        state.curPage.selectState = true
         state.curPage = state.pages[pageIndex]
         state.curPageNum = pageIndex + 1
     },

@@ -14,20 +14,6 @@ const Schema = mongoose.Schema;
 
 autoIncrement.initialize(mongoose.connection);
 
-// const ObjectId = Schema.Types.ObjectId;
-// require('../common/connectMongo'         );
-
-// let schema = new Schema({
-//   inviter: {//邀请者
-//     $type: String,
-//     required: true,
-//   },
-//   invitee: {//被邀请者
-//     $type: String,
-//     required: true,
-//   }
-// }, {collection: 'invitation', timestamps: true, typeKey: '$type'});
-
 const schema = new Schema({
   created: {
     type: Date,
@@ -41,21 +27,37 @@ const schema = new Schema({
     layers: [{
       content: String,
       style: {
-        'background-color': String,
-        color: String,
         height: String,
         width: String,
+        'font-size': Number,
+        'line-height': Number,
         position: String,
         top: String,
         left: String,
         padding: String,
         'text-align': String,
         zIndex: Number,
+        opacity: Number,
+        color: String,
+        'background-color': String,
+        'border-width': Number,
+        'border-radius': Number,
+        'border-style': String,
       },
+      animation: [{
+        class: String,
+        style: {
+          'animation-duration': Number,
+          'animation-delay': Number,
+          'animation-iteration-count': Number,
+        },
+      }],
+      selected: Boolean,
+      layerType: String,
+      index: Number,
     }],
   }],
 });
-// schema.index({inviter: 1});//查询某个用户邀请的人
-// schema.index({invitee: 1}, {unique: true});//查询某个用户的邀请者
+
 schema.plugin(autoIncrement.plugin, { model: 'work', field: 'workId' });
 module.exports = mongoose.model('work', schema);

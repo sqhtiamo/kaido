@@ -29,7 +29,7 @@
 export default {
     methods: {
         addFont: function (message) {
-            this.$store.dispatch('addLayer', 'font')
+            this.$store.dispatch('addLayer', {layerType: 'font'})
         }
     }
 }

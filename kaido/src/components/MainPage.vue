@@ -29,12 +29,16 @@ export default {
     },
     created () {
         //
-        this.$http.get('http://localhost:3000/work/get?id=59', {
+        this.$http.get('http://localhost:3000/work/get?id=94', {
         })
         .then((response) => {
             console.log(response.data.pages[0])
             this.$store.state.work = response.data
             this.$store.state.work.curPage = response.data.pages[0]
+            this.$store.state.work.curPage.curIndex = 0
+            this.$store.state.work.curPage.selectState = true
+            this.$store.state.work.curPage.layerNum = this.$store.state.work.curPage.layers.length
+            this.$store.state.work.curPageNum = 1
             console.log(this.$store.state.work)
         })
         .catch((response) => {
