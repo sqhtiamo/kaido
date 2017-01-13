@@ -7,6 +7,8 @@ import vueDrag from './plugin/drag'
 import LoginPage from './components/LoginPage'
 // 主页面
 import MainPage from './components/MainPage'
+// 预览页面
+import PreviewPage from './components/PreviewPage'
 // store仓库
 import store from './vuex/store'
 
@@ -30,6 +32,11 @@ const router = new VueRouter({
         {
             path: '/login',
             component: LoginPage
+        },
+        {
+
+            path: '/preview',
+            component: PreviewPage
         },
         {
 
