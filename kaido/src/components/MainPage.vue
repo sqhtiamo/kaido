@@ -28,7 +28,7 @@ export default {
         }
     },
     created () {
-        //
+        // var workId =
         this.$http.get('http://localhost:3000/work/get?id=94', {
         })
         .then((response) => {

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import vueDrag from './plugin/drag'
+// import vueUtils from './plugin/utils'
 
 // 登陆页面
 import LoginPage from './components/LoginPage'
@@ -17,6 +18,8 @@ import './assets/reset.css'
 Vue.use(VueRouter)
 
 Vue.use(VueResource)
+
+// Vue.use(vueUtils)
 
 Vue.use(vueDrag)
 
@@ -52,10 +55,8 @@ const router = new VueRouter({
 
 // 现在我们可以启动应用了！
 // 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
-const bus = new Vue()
 new Vue({
     router,
-    store,
-    bus
+    store
 }).$mount('#app')
 

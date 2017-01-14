@@ -97,9 +97,7 @@ const actions = {
     },
 
     selectPage ({commit, state}, {pageIndex}) {
-        console.log(pageIndex)
         commit(types.SAVE_LAYER)
-        console.log('---')
         commit(types.SELECT_PAGE, {pageIndex})
     },
 
@@ -158,8 +156,8 @@ const mutations = {
             index: state.curPage.layerNum
         })
         state.curPage.selectState = true
-        state.curPage.curIndex = state.curPage.layerNum
         state.curPage.layerNum++
+        state.curPage.curIndex = state.curPage.layerNum - 1
     },
 
     [types.UPDATE_LAYER_STYLE] (state, {index, options}) {
@@ -175,8 +173,8 @@ const mutations = {
     },
 
     [types.SELECT_LAYER] (state, {index}) {
-        state.curPage.selectState = true
-        state.curPage.curIndex = index
+        state.curPage = { ...state.curPage,
+            curIndex: index, selectState: true }
     },
 
     [types.DELETE_LAYER] (state) {
@@ -202,11 +200,12 @@ const mutations = {
 
     [types.SELECT_PAGE] (state, {pageIndex}) {
         console.log(pageIndex)
-        console.log(state.pages[pageIndex])
+        console.log(state.pages[pageIndex].layers.length)
         state.curPage = state.pages[pageIndex]
         state.curPage.selectState = true
         state.curPage.curIndex = 0
         state.curPage.layerNum = (state.pages[pageIndex].layers && state.pages[pageIndex].layers.length) || 0
+        console.log(state.curPage.layerNum)
         state.curPageNum = pageIndex + 1
     },
 

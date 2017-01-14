@@ -194,9 +194,6 @@ export default {
         }
     },
     computed: {
-        layerNum () {
-            return this.$store.state.work.curPage.layerNum
-        },
         funcShow () {
             return this.$store.state.work.curPage.selectState
         },
@@ -293,7 +290,7 @@ $black: #313131;
         -webkit-box-pack: center;
         -webkit-transition: background 0.15s ease-in;
         transition: background 0.15s ease-in;
-        
+
         input {
             display: none;
         }

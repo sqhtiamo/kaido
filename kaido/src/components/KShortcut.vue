@@ -15,8 +15,9 @@
 			<div class="shortcut copy">
 				<p>复制</p>
 			</div>
-			<div class="shortcut preview">
-				<p>预览</p>
+			<div class="shortcut preview" v-on:click="updateRoute(1)">
+
+				<p><router-link :to="{ path: 'preview', query: { workId: workId }}">预览</router-link></p>
 			</div>
 			<div class="shortcut phone">
 				<p>机型</p>
@@ -27,10 +28,23 @@
 
 <script>
 export default {
+    data () {
+        return {
+            workId: this.$store.state.work.workId
+        }
+    },
     methods: {
         addFont: function (message) {
             this.$store.dispatch('addLayer', {layerType: 'font'})
         }
+        // updateRoute: function (query) {
+        //     this.$route.router.go({
+        //         name: 'search',
+        //         query: {
+        //             workId: 1
+        //         }
+        //     })
+        // }
     }
 }
 </script>
@@ -71,6 +85,10 @@ $black: #313131;
 			line-height: 35px;
 			-webkit-transition: background 0.2s linear, transform 0.2s linear;
 			transition: background 0.2s linear, transform 0.2s linear;
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
 		}
 		&:hover {
 			background-color: nth($black, 1);

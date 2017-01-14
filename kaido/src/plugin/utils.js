@@ -1,6 +1,16 @@
 export default {
-    getUrlKey: (name) => {
-        // return
-        // return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(window.location.href) || [, ''])[1].replace(/\+/g, '%20')) || null
+    getUrlParam: () => {
+        var param = {}
+
+        if (window.location.search.split('?').length > 1) {
+            var params = window.location.search.split('?')[1].split('&')
+
+            params.forEach(function (value) {
+                param[value.split('=')[0]] = value.split('=')[1]
+            })
+
+            return param
+        }
+        return null
     }
 }
