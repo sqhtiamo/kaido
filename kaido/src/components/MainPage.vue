@@ -32,14 +32,17 @@ export default {
         this.$http.get('http://localhost:3000/work/get?id=94', {
         })
         .then((response) => {
-            console.log(response.data.pages[0])
-            this.$store.state.work = response.data
-            this.$store.state.work.curPage = response.data.pages[0]
-            this.$store.state.work.curPage.curIndex = 0
-            this.$store.state.work.curPage.selectState = true
-            this.$store.state.work.curPage.layerNum = this.$store.state.work.curPage.layers.length
-            this.$store.state.work.curPageNum = 1
-            console.log(this.$store.state.work)
+            this.$store.state.work = {
+                pages: response.data.pages,
+                workId: response.data.workId,
+                curPage: {
+                    layers: response.data.pages[0].layers,
+                    curIndex: 0,
+                    selectState: true,
+                    layerNum: response.data.pages[0].layers.length
+                },
+                curPageNum: 1
+            }
         })
         .catch((response) => {
             console.log(response)

@@ -99,6 +99,7 @@ const actions = {
     selectPage ({commit, state}, {pageIndex}) {
         console.log(pageIndex)
         commit(types.SAVE_LAYER)
+        console.log('---')
         commit(types.SELECT_PAGE, {pageIndex})
     },
 
@@ -202,8 +203,10 @@ const mutations = {
     [types.SELECT_PAGE] (state, {pageIndex}) {
         console.log(pageIndex)
         console.log(state.pages[pageIndex])
-        state.curPage.selectState = true
         state.curPage = state.pages[pageIndex]
+        state.curPage.selectState = true
+        state.curPage.curIndex = 0
+        state.curPage.layerNum = (state.pages[pageIndex].layers && state.pages[pageIndex].layers.length) || 0
         state.curPageNum = pageIndex + 1
     },
 
@@ -219,6 +222,9 @@ const mutations = {
             state.curPageNum--
         }
         // 删除之后当前layer展示下一页
+        console.log('dd')
+        console.log(state.curPageNum)
+        console.log(state.pages)
         state.curPage = state.pages[state.curPageNum - 1]
     }
 }

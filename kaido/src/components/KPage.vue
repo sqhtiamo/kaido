@@ -12,7 +12,7 @@
     	</div>
         <ul class="pages-list">
 			<li v-for="(page, index) in pages" :class="curPageNum === index+1 ? 'current' : ''" v-on:click="selectPage(index)">
-				<i class="icon-delete" v-on:click="deletePage(curPageNum)"></i>
+				<i class="icon-delete" v-on:click.stop="deletePage(curPageNum)"></i>
 				第{{index+1}}页
 			</li>
 			<li v-on:click="addPage()">+</li>
@@ -45,6 +45,8 @@ export default {
         },
 
         selectPage: function (pageIndex) {
+            console.log(pageIndex)
+            console.log('=====')
             this.$store.dispatch('selectPage', {pageIndex})
         },
 
