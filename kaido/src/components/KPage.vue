@@ -32,7 +32,6 @@ export default {
     },
     computed: {
         pages () {
-            console.log(this.$store.state.work.pages.length)
             return this.$store.state.work.pages
         },
         curPageNum () {
@@ -45,8 +44,6 @@ export default {
         },
 
         selectPage: function (pageIndex) {
-            console.log(pageIndex)
-            console.log('=====')
             this.$store.dispatch('selectPage', {pageIndex})
         },
 
@@ -68,7 +65,6 @@ export default {
                 this.$store.state.work.workId = response.data
             })
             .catch((response) => {
-                console.log(response)
             })
             this.$store.dispatch('saveWork')
         }

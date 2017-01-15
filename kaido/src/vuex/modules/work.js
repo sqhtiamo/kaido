@@ -15,7 +15,8 @@ const state = {
         layerNum: 0,
         curIndex: -1
     }],
-    curPageNum: 1
+    curPageNum: 1,
+    workId: ''
 }
 
 const styleKeys = {
@@ -199,13 +200,10 @@ const mutations = {
     },
 
     [types.SELECT_PAGE] (state, {pageIndex}) {
-        console.log(pageIndex)
-        console.log(state.pages[pageIndex].layers.length)
         state.curPage = state.pages[pageIndex]
         state.curPage.selectState = true
         state.curPage.curIndex = 0
         state.curPage.layerNum = (state.pages[pageIndex].layers && state.pages[pageIndex].layers.length) || 0
-        console.log(state.curPage.layerNum)
         state.curPageNum = pageIndex + 1
     },
 
@@ -221,9 +219,6 @@ const mutations = {
             state.curPageNum--
         }
         // 删除之后当前layer展示下一页
-        console.log('dd')
-        console.log(state.curPageNum)
-        console.log(state.pages)
         state.curPage = state.pages[state.curPageNum - 1]
     }
 }

@@ -88,7 +88,6 @@ export default {
     props: ['previewAnimation'],
     computed: {
         curPage () {
-            // console.log(this.$store.getters.layerFormatData[0].animation.style)
             return {
                 layers: this.$store.getters.layerFormatData,
                 curIndex: this.$store.state.work.curPage.curIndex

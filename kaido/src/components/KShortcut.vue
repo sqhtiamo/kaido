@@ -15,9 +15,8 @@
 			<div class="shortcut copy">
 				<p>复制</p>
 			</div>
-			<div class="shortcut preview" v-on:click="updateRoute(1)">
-
-				<p><router-link :to="{ path: 'preview', query: { workId: workId }}">预览</router-link></p>
+			<div class="shortcut preview">
+				<p><router-link :to="{ path: 'preview', query: { workId: workId }}" target="_blank">预览</router-link></p>
 			</div>
 			<div class="shortcut phone">
 				<p>机型</p>
@@ -28,9 +27,9 @@
 
 <script>
 export default {
-    data () {
-        return {
-            workId: this.$store.state.work.workId
+    computed: {
+        workId () {
+            return this.$store.state.work.workId
         }
     },
     methods: {

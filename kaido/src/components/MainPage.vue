@@ -28,25 +28,29 @@ export default {
         }
     },
     created () {
-        // var workId =
-        this.$http.get('http://localhost:3000/work/get?id=94', {
-        })
-        .then((response) => {
-            this.$store.state.work = {
-                pages: response.data.pages,
-                workId: response.data.workId,
-                curPage: {
-                    layers: response.data.pages[0].layers,
-                    curIndex: 0,
-                    selectState: true,
-                    layerNum: response.data.pages[0].layers.length
-                },
-                curPageNum: 1
-            }
-        })
-        .catch((response) => {
-            console.log(response)
-        })
+        const workId = this.$route.query.workId
+        if (workId) {
+            this.$http.get('http://localhost:3000/work/get', {
+                params: {
+                    id: workId
+                }
+            })
+            .then((response) => {
+                this.$store.state.work = {
+                    pages: response.data.pages,
+                    workId: response.data.workId,
+                    curPage: {
+                        layers: response.data.pages[0].layers,
+                        curIndex: 0,
+                        selectState: true,
+                        layerNum: response.data.pages[0].layers.length
+                    },
+                    curPageNum: 1
+                }
+            })
+            .catch((response) => {
+            })
+        }
         this.$store.dispatch('saveWork')
         this.$root.$on('previewAnimation', (el) => {
             this.previewAnimation = false

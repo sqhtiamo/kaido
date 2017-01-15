@@ -5,7 +5,6 @@
             bind: function (el, binding, vnode) {
                 var isChildDom
                 if (binding.arg !== undefined) {
-                    // console.log(el.firstChild)
                     isChildDom = true
                 } else {
                     isChildDom = false
