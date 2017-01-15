@@ -30,7 +30,7 @@ export default {
     created () {
         const workId = this.$route.query.workId
         if (workId) {
-            this.$http.get('http://localhost:3000/work/get', {
+            this.$http.get(`${process.env.SERVER_HOST}/work/get`, {
                 params: {
                     id: workId
                 }

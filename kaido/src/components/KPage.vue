@@ -58,7 +58,7 @@ export default {
 
         saveViewport: function (message) {
             this.$store.dispatch('saveWork')
-            this.$http.post('http://localhost:3000/work/save', {
+            this.$http.post(`${process.env.SERVER_HOST}/work/save`, {
                 work: this.$store.state.work
             })
             .then((response) => {

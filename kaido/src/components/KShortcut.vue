@@ -36,14 +36,6 @@ export default {
         addFont: function (message) {
             this.$store.dispatch('addLayer', {layerType: 'font'})
         }
-        // updateRoute: function (query) {
-        //     this.$route.router.go({
-        //         name: 'search',
-        //         query: {
-        //             workId: 1
-        //         }
-        //     })
-        // }
     }
 }
 </script>
