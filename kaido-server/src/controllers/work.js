@@ -1,20 +1,24 @@
 import Router from 'koa-router';
 import WorkModel from '../models/work';
+import QRCode from '../utils/qrcode';
 
 const workRouter = new Router();
 
 workRouter.post('/save', async (ctx, next) => {
   try {
-    const workId = ctx.request.body.work.workId;
+    let workId = ctx.request.body.work.workId;
     if (!workId) {
       const work = await WorkModel.create(ctx.request.body.work);
-      ctx.body = work.workId;
-      await next();
+      workId = work.workId;
     } else {
       await WorkModel.update({ workId }, ctx.request.body.work);
-      ctx.body = workId;
-      await next();
     }
+    const path = await QRCode.save(workId);
+    ctx.body = {
+      workId,
+      path,
+    };
+    await next();
   } catch (e) {
     console.error(`[Error]: ${e.message}`);
     ctx.body = `Error: ${e.message}`;

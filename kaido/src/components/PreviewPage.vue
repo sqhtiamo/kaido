@@ -26,7 +26,6 @@ export default {
         KView
     },
     created () {
-        console.log(this.$store.state.work.workId)
     }
 }
 </script>
