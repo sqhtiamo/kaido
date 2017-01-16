@@ -16,7 +16,7 @@
 				<p>复制</p>
 			</div>
 			<div class="shortcut preview">
-				<p><router-link :to="{ path: 'preview', query: { workId: workId }}" target="_blank">预览</router-link></p>
+				<p><router-link :to="{ path: 'preview', query: { workId: workId }}" >预览</router-link></p>
 			</div>
 			<div class="shortcut phone">
 				<p>机型</p>

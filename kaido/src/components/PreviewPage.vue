@@ -3,7 +3,9 @@
     <section class="pop-preview">
         <!-- 预览区域 -->
         <div class="preview-area">
-            <div class="preview-phone"></div>
+            <div class="preview-phone">
+                <k-view :preview-animation="true"></k-view>
+            </div>
             <div class="preview-turn">
                 <i class="up"></i>
                 <i class="down"></i>
@@ -17,6 +19,16 @@
 </template>
 
 <script>
+import KView from './KView'
+
+export default {
+    components: {
+        KView
+    },
+    created () {
+        console.log(this.$store.state.work.workId)
+    }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
