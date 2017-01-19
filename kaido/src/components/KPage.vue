@@ -62,7 +62,7 @@ export default {
                 work: this.$store.state.work
             })
             .then((response) => {
-                this.$store.state.work.workId = response.data
+                this.$store.state.work.workId = response.data.workId
             })
             .catch((response) => {
             })

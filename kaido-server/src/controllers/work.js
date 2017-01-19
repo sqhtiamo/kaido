@@ -14,6 +14,7 @@ workRouter.post('/save', async (ctx, next) => {
       await WorkModel.update({ workId }, ctx.request.body.work);
     }
     const path = await QRCode.save(workId);
+    // console.log(path)
     ctx.body = {
       workId,
       path,

@@ -24,8 +24,8 @@
         <!-- 手机主要视区 -->
         <div class="phone-main-area">
 
-            <div v-for="(layer, index) in curPage.layers " v-drag="{updateLayerStyle, index}" :style="[layer.style, layer.animation.style]" :class="[previewAnimation ? layer.animation.class : '' , 'drag', 'animated']" v-on:click="selectLayer(index)">
-                <div @keyup="updateLayerContent(index, $event)" contenteditable="true" style="user-modify: read-write-plaintext-only;">请输入文字</div>
+            <div v-for="(layer, index) in curPage.layers " v-drag="{updateLayerStyle, index}" :style="[layer.style, layer.animation.style]" :class="[previewAnimation ? layer.animation.class : '' , 'drag', 'animated']" v-on:click="selectLayer(index)" move="true">
+                <div @keyup="updateLayerContent(index, $event)" contenteditable="true" style="user-modify: read-write-plaintext-only;" move="true">请输入文字</div>
                 <div v-if="curPage.curIndex === index" class="select-func">
                     <div class="rotate-circle"></div>
                     <div class="rotate-line"></div>

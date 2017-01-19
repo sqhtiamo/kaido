@@ -4,6 +4,8 @@
         Vue.directive('drag', {
             bind: function (el, binding, vnode) {
                 var isChildDom
+                // drag 和 scale 2种模式
+                // var mode = 'drag'
                 if (binding.arg !== undefined) {
                     isChildDom = true
                 } else {
@@ -12,6 +14,13 @@
                 var offsetX = 0
                 var offsetY = 0
 
+                function start (e) {
+                    // 非拖动模式
+                    if (!e.target.attributes.move) {
+                        return
+                    }
+                    down(e)
+                }
                 function down (e) {
                     offsetX = (e.pageX - el.offsetLeft)
                     offsetY = (e.pageY - el.offsetTop)
@@ -45,7 +54,7 @@
                         top: el.style.top
                     })
                 }
-                el.addEventListener('mousedown', down)
+                el.addEventListener('mousedown', start)
             }
 
         })
